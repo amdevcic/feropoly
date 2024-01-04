@@ -55,7 +55,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         UIManager.Instance.RollDice(value);
 
         //move player
-
+        BoardManager.Instance.MovePlayerSpaces(playerTurn, value);
     }
 
     private void Awake() 
@@ -85,6 +85,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                                       Quaternion.identity, 0);
         }
 
+        BoardManager.Instance.UpdatePlayers(GameObject.FindObjectsOfType<Pawn>());
         BeginTurn(0);
     }
 
