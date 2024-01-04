@@ -5,11 +5,17 @@ using UnityEngine.SceneManagement;
 
 using Photon.Pun;
 using Photon.Realtime;
+using Photon.Pun.UtilityScripts;
 
+[RequireComponent(typeof(PhotonView))]
 public class GameManager : MonoBehaviourPunCallbacks
 {
     public GameObject playerPrefab;
     public Transform spawnPoint;
+    private PhotonView _photonView;
+
+    [SerializeField]
+    public byte playerTurn = 1;
 
     public override void OnLeftRoom()
     {
@@ -21,6 +27,37 @@ public class GameManager : MonoBehaviourPunCallbacks
         PhotonNetwork.LeaveRoom();
     }
 
+    [PunRPC]
+    public void BeginTurn(byte turn)
+    {
+        playerTurn = turn;
+        Debug.Log($"Begin turn for player {playerTurn}");
+        bool myTurn = PhotonNetwork.PlayerList[playerTurn].IsLocal;
+        if (myTurn) {
+            Debug.Log("Your turn");
+        }
+        UIManager.Instance.BeginTurn(myTurn);
+    }
+
+    [PunRPC]
+    public void EndTurn() 
+    {
+        if (++playerTurn >= PhotonNetwork.CurrentRoom.PlayerCount) 
+        {
+            playerTurn = 0;
+        }
+        _photonView.RPC(nameof(BeginTurn), RpcTarget.All, new object[] { playerTurn });
+    }
+
+    public void Roll()
+    {
+        int value = Random.Range(1, 7);
+        UIManager.Instance.RollDice(value);
+
+        //move player
+
+    }
+
     private void Awake() 
     {
         if (PhotonNetwork.CurrentRoom == null)
@@ -28,6 +65,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             SceneManager.LoadScene(0);
             return;
         }
+        _photonView = GetComponent<PhotonView>();
     }
 
     void Start()
@@ -43,9 +81,11 @@ public class GameManager : MonoBehaviourPunCallbacks
             string test = this.playerPrefab.name;
             // we're in a room. spawn a character for the local player. it gets synced by using PhotonNetwork.Instantiate
             PhotonNetwork.Instantiate(this.playerPrefab.name, 
-                                      spawnPoint.position + Vector3.back * PhotonNetwork.CurrentRoom.PlayerCount * 0.1f, 
+                                      spawnPoint.position + Vector3.back * (PhotonNetwork.LocalPlayer.ActorNumber - 1) * 0.1f, 
                                       Quaternion.identity, 0);
         }
+
+        BeginTurn(0);
     }
 
 }
