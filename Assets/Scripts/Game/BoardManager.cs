@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Photon.Realtime;
 using UnityEngine;
 
 public class BoardManager : MonoBehaviour
@@ -9,24 +10,31 @@ public class BoardManager : MonoBehaviour
     const int MAX_TILES = 40;
     const int MAX_PLAYERS = 8;
     Tile[] tiles;
-    Pawn[] players;
-    public GameObject tileContainer;
+    public Transform tileContainer;
+    public Transform pawnContainer;
 
     private void Start() {
         tiles = tileContainer.GetComponentsInChildren<Tile>();
-        Debug.Log(tiles[4].Name);
     }
 
-    public void UpdatePlayers(Pawn[] pawns)
+    public Pawn getPlayerPawn(Player player)
     {
-        players = pawns;
+        return (player.TagObject as GameObject).GetComponent<Pawn>();
     }
 
-    public void MovePlayerSpaces(int player, int spaces) 
+    public void MovePlayerSpaces(Player player, int spaces) 
     {
-        int playerSpace = players[player].space;
-        Debug.Log($"player {player} moves {spaces} spaces to {playerSpace + spaces}, total spaces: {tiles.Length}");
-        players[player].MoveTo(tiles[playerSpace + spaces].transform.position, playerSpace + spaces);
+        Pawn pawn = getPlayerPawn(player);
+        int playerSpace = pawn.space;
+        int newSpace = (playerSpace + spaces) % tiles.Length;
+        
+        pawn.MoveTo(tiles[newSpace].transform.position, newSpace);
+
+        for (int i=playerSpace+1; i<=newSpace; i++)
+        {
+            tiles[i].OnPass(pawn);
+        }
+        tiles[newSpace].OnActivate(pawn);
     }
 
     private void Awake() 

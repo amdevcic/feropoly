@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     public GameObject playerPrefab;
     public Transform spawnPoint;
     private PhotonView _photonView;
+    Pawn localPawn;
 
     [SerializeField]
     public byte playerTurn = 1;
@@ -55,7 +56,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         UIManager.Instance.RollDice(value);
 
         //move player
-        BoardManager.Instance.MovePlayerSpaces(playerTurn, value);
+        BoardManager.Instance.MovePlayerSpaces(PhotonNetwork.PlayerList[playerTurn], value);
     }
 
     private void Awake() 
@@ -78,14 +79,13 @@ public class GameManager : MonoBehaviourPunCallbacks
         else
         {
             Debug.LogFormat("Instantiating LocalPlayer");
-            string test = this.playerPrefab.name;
             // we're in a room. spawn a character for the local player. it gets synced by using PhotonNetwork.Instantiate
-            PhotonNetwork.Instantiate(this.playerPrefab.name, 
+            GameObject pawn = PhotonNetwork.Instantiate(this.playerPrefab.name, 
                                       spawnPoint.position + Vector3.back * (PhotonNetwork.LocalPlayer.ActorNumber - 1) * 0.1f, 
-                                      Quaternion.identity, 0);
+                                      Quaternion.identity, 0) as GameObject;
+            pawn.name = PhotonNetwork.LocalPlayer.NickName;
         }
 
-        BoardManager.Instance.UpdatePlayers(GameObject.FindObjectsOfType<Pawn>());
         BeginTurn(0);
     }
 
