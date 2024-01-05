@@ -17,10 +17,13 @@ public class UIManager : MonoBehaviourPunCallbacks
     public Transform _eventLogContainer;
     public GameObject _eventLogPrefab;
     public ScrollRect _eventLogScroll;
+    public BuyConfirmation _buyConfirmation;
+    public GameObject _buyConfirmationPanel;
 
     public void HideAll()
     {
         _dicePanel.SetActive(false);
+        hidePropertyBuyConfirmation();
     }
 
     public void BeginTurn(bool myTurn, string playerName)
@@ -70,6 +73,17 @@ public class UIManager : MonoBehaviourPunCallbacks
         GameObject log = Instantiate(_eventLogPrefab, _eventLogContainer) as GameObject;
         log.GetComponentInChildren<TMP_Text>().text = text;
         _eventLogScroll.velocity = new Vector2(0, 1000.0f);
+    }
+
+    public void SetupPropertyBuy(string text, Property property, Pawn player) 
+    {
+        _buyConfirmationPanel.SetActive(true);
+        _buyConfirmation.SetUp(text, property, player);
+    }
+
+    public void hidePropertyBuyConfirmation()
+    {
+        _buyConfirmationPanel.SetActive(false);
     }
 
     private void Awake() 
