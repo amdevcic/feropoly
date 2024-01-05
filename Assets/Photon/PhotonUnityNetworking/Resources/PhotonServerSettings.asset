@@ -45,6 +45,10 @@ MonoBehaviour:
   - MoveToRPC
   - AddPawnToGame
   - RempvePawnFromGame
+  - <GetMoney>g__getRPC|12_0
+  - <PayMoney>g__payRPC|11_0
+  - GetMoneyRPC
+  - PayRPC
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

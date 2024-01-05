@@ -4,6 +4,6 @@ public class Go : Tile
 {
     public override void OnPass(Pawn player) 
     {
-        player.money += 200;
+        player.GetMoney(200);
     }
 }

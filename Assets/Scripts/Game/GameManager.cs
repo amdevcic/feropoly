@@ -83,6 +83,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             GameObject pawn = PhotonNetwork.Instantiate(this.playerPrefab.name, 
                                       spawnPoint.position + Vector3.back * (PhotonNetwork.LocalPlayer.ActorNumber - 1) * 0.1f, 
                                       Quaternion.identity, 0) as GameObject;
+            UIManager.Instance.DisplayPlayer(PhotonNetwork.LocalPlayer);
             pawn.name = PhotonNetwork.LocalPlayer.NickName;
         }
 

@@ -2,13 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
-using Photon.Realtime;
+using UnityEngine.Events;
 
 public class Pawn : MonoBehaviourPunCallbacks, IPunInstantiateMagicCallback
 {
-    public int money;
+    const int STARTING_MONEY = 1500;
+    public int Money { get; private set; }
     public int space;
     private PhotonView _photonView;
+    public UnityEvent moneyChanged;
     public void OnPhotonInstantiate(PhotonMessageInfo info)
     {
         info.Sender.TagObject = this.gameObject;
@@ -17,7 +19,8 @@ public class Pawn : MonoBehaviourPunCallbacks, IPunInstantiateMagicCallback
     private void Awake() 
     {
         _photonView = GetComponent<PhotonView>();
-        space = -1;
+        space = 0;
+        Money = STARTING_MONEY;
     }
 
     public void MoveTo(Vector3 dest, int space)
@@ -31,5 +34,32 @@ public class Pawn : MonoBehaviourPunCallbacks, IPunInstantiateMagicCallback
         Debug.Log($"player moves to space {space}");
         transform.position = dest;
         this.space = space;
+    }
+
+    [PunRPC]
+    private void PayRPC(int moneyToPay, Pawn other) 
+    {
+        Money -= moneyToPay;
+        // if other is null, pay the bank
+        if (other) 
+            other.GetMoney(moneyToPay);
+        moneyChanged.Invoke();
+    }
+
+    public void PayMoney(int moneyToPay, Pawn other) 
+    {
+        photonView.RPC(nameof(PayRPC), RpcTarget.All, new object[] { moneyToPay, other });
+    }
+
+    [PunRPC]
+    void GetMoneyRPC(int paidMoney) 
+    {
+        Money += paidMoney;
+        moneyChanged.Invoke();
+    }
+
+    public void GetMoney(int paidMoney)
+    {
+        photonView.RPC(nameof(GetMoneyRPC), RpcTarget.All, new object[] { paidMoney });
     }
 }

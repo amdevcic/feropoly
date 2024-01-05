@@ -1,4 +1,5 @@
 using Photon.Pun;
+using Photon.Realtime;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,8 +11,8 @@ public class UIManager : MonoBehaviourPunCallbacks
     public TextMeshProUGUI _diceText;
     public Button _rollButton;
     public Button _endTurnButton;
-    public TMP_Text _playerName;
-    public TMP_Text _playerMoney;
+    public GameObject _playerInfoPrefab;
+    public Transform _playerInfoContainer;
 
     public void HideAll()
     {
@@ -38,6 +39,11 @@ public class UIManager : MonoBehaviourPunCallbacks
         _endTurnButton.interactable = true;
     }
 
+    public void DisplayPlayer(Player player) 
+    {
+        GameObject info = PhotonNetwork.Instantiate(_playerInfoPrefab.name, Vector3.zero, Quaternion.identity) as GameObject;
+    }
+
     private void Awake() 
     { 
         if (Instance != null && Instance != this) 
@@ -52,6 +58,6 @@ public class UIManager : MonoBehaviourPunCallbacks
 
     private void Start() 
     {
-        _playerName.text = PhotonNetwork.LocalPlayer.NickName;
+        // _playerName.text = PhotonNetwork.LocalPlayer.NickName;
     }
 }
