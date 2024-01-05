@@ -15,6 +15,7 @@ public class Pawn : MonoBehaviourPunCallbacks, IPunInstantiateMagicCallback
     public void OnPhotonInstantiate(PhotonMessageInfo info)
     {
         info.Sender.TagObject = this.gameObject;
+        name = info.Sender.NickName;
     }
 
     private void Awake() 
