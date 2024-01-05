@@ -17,8 +17,6 @@ public abstract class Tile : MonoBehaviourPunCallbacks
     }
     protected void Awake() 
     {
-        this.gameObject.AddComponent<PhotonView>();
-        _photonView = PhotonView.Get(this);
-        //_photonView = this.GetComponent<PhotonView>();
+        _photonView = this.GetComponent<PhotonView>();
     }
 }

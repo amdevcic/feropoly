@@ -18,8 +18,6 @@ public class Property : Tile
         if (!this.Owner) {
             // player buys property
             player.PayMoney(this.BuyPrice, null);
-            if(!this._photonView)
-                Debug.Log($"Sad");
             player.ChangeOwner(this._photonView.ViewID);
         } else if(this.Owner != player) {
             // player pays owner
