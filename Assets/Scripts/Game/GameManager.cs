@@ -35,13 +35,10 @@ public class GameManager : MonoBehaviourPunCallbacks
         playerTurn = turn;
         Debug.Log($"Begin turn for player {playerTurn}");
         bool myTurn = PhotonNetwork.PlayerList[playerTurn].IsLocal;
-        if (myTurn) {
-            Debug.Log("Your turn");
-        }
+
         UIManager.Instance.BeginTurn(myTurn, PhotonNetwork.PlayerList[playerTurn].NickName);
     }
 
-    [PunRPC]
     public void EndTurn() 
     {
         if (++playerTurn >= PhotonNetwork.CurrentRoom.PlayerCount) 
@@ -88,7 +85,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             UIManager.Instance.DisplayPlayer(PhotonNetwork.LocalPlayer);
             UIManager.Instance.Log($"<color=orange>{PhotonNetwork.LocalPlayer.NickName}</color> se pridružio igri.");
             pawn.name = PhotonNetwork.LocalPlayer.NickName;
-            
+
             CardManager.Instance.Init();
         }
 

@@ -11,31 +11,14 @@ public class DeckManager : MonoBehaviour
 
     public static DeckManager Instance { get; private set; }
 
-    public List<Card> testCards;
-    public List<Card> testDiscard;
-    private List<int> chanceCards;
-    private List<int> communityChestCards;
-    private List<int> chanceDiscard;
-    private List<int> communityChestDiscard;
+    [SerializeField]
+    private List<Card> chanceCards;
 
-    public void DrawTest()
-    {
-        if (testCards.Count == 0)
-        {
-            testCards = testDiscard;
-            testDiscard.Clear();
-        }
+    [SerializeField]
+    private List<Card> communityChestCards;
 
-        Card card = testCards[0];
-        testCards.RemoveAt(0);
-
-        Debug.Log($"Izvukao kartu {card.text}");
-
-        // aktiviraj karticu
-        card.pullEvent.Invoke();
-
-        testDiscard.Add(card);
-    }
+    private List<Card> chanceDiscard;
+    private List<Card> communityChestDiscard;
 
     public void DrawChance()
     {
@@ -46,10 +29,13 @@ public class DeckManager : MonoBehaviour
             Shuffle(chanceCards);
         }
 
-        int card = chanceCards[0];
+        Card card = chanceCards[0];
         chanceCards.RemoveAt(0);
 
+        UIManager.Instance.Log($"Izvukao kartu: <color=yellow>{card.text}</color>");
+
         // aktiviraj karticu
+        card.pullEvent.Invoke();
 
         chanceDiscard.Add(card);
     }
@@ -63,15 +49,18 @@ public class DeckManager : MonoBehaviour
             Shuffle(communityChestCards);
         }
         
-        int card = communityChestCards[0];
+        Card card = communityChestCards[0];
         communityChestCards.RemoveAt(0);
 
+        UIManager.Instance.Log($"Izvukao kartu: <color=yellow>{card.text}</color>");
+
         // aktiviraj karticu
+        card.pullEvent.Invoke();
 
         communityChestDiscard.Add(card);
     }
 
-    private static void Shuffle(List<int> list) {
+    private static void Shuffle(List<Card> list) {
         var count = list.Count;
         var last = count - 1;
         for (var i = 0; i < last; ++i) {
@@ -84,14 +73,12 @@ public class DeckManager : MonoBehaviour
 
     private void Start() 
     {
-        chanceCards = Enumerable.Range(0, 50).ToList<int>();
-        communityChestCards = Enumerable.Range(0, 50).ToList<int>();
 
         Shuffle(chanceCards);
         Shuffle(communityChestCards);
 
-        chanceDiscard = new List<int>();
-        communityChestDiscard = new List<int>();
+        chanceDiscard = new List<Card>();
+        communityChestDiscard = new List<Card>();
     }
 
     private void Awake() 

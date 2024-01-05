@@ -908,7 +908,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tileContainer: {fileID: 1070041181}
-  pawnContainer: {fileID: 1326445398}
+  pawnContainer: {fileID: 0}
 --- !u!114 &261603884
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3811,9 +3811,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: b13c2ee8bdb0f6640a4e0142aa089389, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1070041181}
-    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: b13c2ee8bdb0f6640a4e0142aa089389, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1326445398}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b13c2ee8bdb0f6640a4e0142aa089389, type: 3}
       insertIndex: -1
@@ -3956,37 +3953,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1322478057}
   m_CullTransparentMesh: 1
---- !u!1 &1326445397
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1326445398}
-  m_Layer: 0
-  m_Name: PawnContainer
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1326445398
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1326445397}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.01, y: 1, z: 0.009999997}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 261603882}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1386772702
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4065,6 +4031,8 @@ GameObject:
   - component: {fileID: 1437001027}
   - component: {fileID: 1437001028}
   - component: {fileID: 1437001029}
+  - component: {fileID: 1437001031}
+  - component: {fileID: 1437001030}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -4145,6 +4113,273 @@ MonoBehaviour:
   sceneViewId: 2
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!114 &1437001030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1437001025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4e7f00719c8f014797b216b3c8345bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  localPawn: {fileID: 0}
+--- !u!114 &1437001031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1437001025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a26103fd5fcb7c54ab69f2b5c3584a7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chanceCards:
+  - text: go to boardwalk
+    pullEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1437001030}
+          m_TargetAssemblyTypeName: CardManager, Assembly-CSharp
+          m_MethodName: GoTo
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 1515765536}
+            m_ObjectArgumentAssemblyTypeName: Tile, Assembly-CSharp
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - text: advance to go
+    pullEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1437001030}
+          m_TargetAssemblyTypeName: CardManager, Assembly-CSharp
+          m_MethodName: GoTo
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 1481470439}
+            m_ObjectArgumentAssemblyTypeName: Tile, Assembly-CSharp
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - text: "bank pays you dividend of 50\u20AC"
+    pullEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1437001030}
+          m_TargetAssemblyTypeName: CardManager, Assembly-CSharp
+          m_MethodName: GetMoney
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 50
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - text: get out of jail free
+    pullEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1437001030}
+          m_TargetAssemblyTypeName: CardManager, Assembly-CSharp
+          m_MethodName: GetOutOfJailFree
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 50
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - text: go to jail
+    pullEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1437001030}
+          m_TargetAssemblyTypeName: CardManager, Assembly-CSharp
+          m_MethodName: GoToJail
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 50
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - text: "pay 15\u20AC"
+    pullEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1437001030}
+          m_TargetAssemblyTypeName: CardManager, Assembly-CSharp
+          m_MethodName: PayMoney
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 15
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - text: "pay all players 50\u20AC"
+    pullEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1437001030}
+          m_TargetAssemblyTypeName: CardManager, Assembly-CSharp
+          m_MethodName: PayAll
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 50
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  communityChestCards:
+  - text: advance to go
+    pullEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1437001030}
+          m_TargetAssemblyTypeName: CardManager, Assembly-CSharp
+          m_MethodName: GoTo
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 1481470439}
+            m_ObjectArgumentAssemblyTypeName: Tile, Assembly-CSharp
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - text: "collect 200\u20AC"
+    pullEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1437001030}
+          m_TargetAssemblyTypeName: CardManager, Assembly-CSharp
+          m_MethodName: GetMoney
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 200
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - text: "pay 50\u20AC"
+    pullEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1437001030}
+          m_TargetAssemblyTypeName: CardManager, Assembly-CSharp
+          m_MethodName: PayMoney
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 50
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - text: get out of jail free
+    pullEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1437001030}
+          m_TargetAssemblyTypeName: CardManager, Assembly-CSharp
+          m_MethodName: GetOutOfJailFree
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 50
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - text: go to jail
+    pullEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1437001030}
+          m_TargetAssemblyTypeName: CardManager, Assembly-CSharp
+          m_MethodName: GoToJail
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 50
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - text: "get 100\u20AC"
+    pullEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1437001030}
+          m_TargetAssemblyTypeName: CardManager, Assembly-CSharp
+          m_MethodName: GetMoney
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 100
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - text: "pay 100\u20AC"
+    pullEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1437001030}
+          m_TargetAssemblyTypeName: CardManager, Assembly-CSharp
+          m_MethodName: GetMoney
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 100
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - text: "it's your birthday, get 10\u20AC from all players"
+    pullEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1437001030}
+          m_TargetAssemblyTypeName: CardManager, Assembly-CSharp
+          m_MethodName: GetFromAll
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 10
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1460951119
 GameObject:
   m_ObjectHideFlags: 0
@@ -4176,6 +4411,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1481470439 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -7894459921501874930, guid: f836dcb6c2784214f892d42d59491e35, type: 3}
+  m_PrefabInstance: {fileID: 34402238}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5935cb4ac7d740444b048661ddfa373f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1515765534
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4286,6 +4532,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3507554812282075049, guid: 86339da255a799f479281c24797cdd31, type: 3}
   m_PrefabInstance: {fileID: 1515765534}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1515765536 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 787073670684250925, guid: 86339da255a799f479281c24797cdd31, type: 3}
+  m_PrefabInstance: {fileID: 1515765534}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6a3e392ae224574d952e8fb14aa0871, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1529116611
 GameObject:
   m_ObjectHideFlags: 0

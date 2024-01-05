@@ -22,17 +22,32 @@ public class CardManager : MonoBehaviour
 
     public void PayPerHouse(int house, int hotel)
     {
-
+        // no op dok ne dodamo kućice
     }
 
     public void PayAll(int money)
     {
+        foreach (Player player in PhotonNetwork.PlayerList)
+        {
+            if (player.IsLocal) continue;
+            Pawn pawn = BoardManager.Instance.getPlayerPawn(player);
+            localPawn.PayMoney(money, pawn);
+        }
+    }
 
+    public void GetFromAll(int money)
+    {
+        foreach (Player player in PhotonNetwork.PlayerList)
+        {
+            if (player.IsLocal) continue;
+            Pawn pawn = BoardManager.Instance.getPlayerPawn(player);
+            pawn.PayMoney(money, localPawn);
+        }
     }
 
     public void GoToJail()
     {
-
+        // kad dodamo zatvor
     }
 
     public void GetOutOfJailFree()
