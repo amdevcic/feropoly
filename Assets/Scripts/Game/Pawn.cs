@@ -49,6 +49,9 @@ public class Pawn : MonoBehaviourPunCallbacks, IPunInstantiateMagicCallback
     public void PayMoney(int moneyToPay, Pawn other) 
     {
         photonView.RPC(nameof(PayRPC), RpcTarget.All, new object[] { moneyToPay, other });
+
+        UIManager.Instance.Log($"<color=orange>{name}</color> je platio <color=green>{moneyToPay}€</color>" 
+                               + (other ? $" igraču <color=orange>{other.name}</color>" : "") + ".");
     }
 
     [PunRPC]
