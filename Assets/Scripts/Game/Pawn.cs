@@ -78,5 +78,6 @@ public class Pawn : MonoBehaviourPunCallbacks, IPunInstantiateMagicCallback
     {
         GameObject tile = PhotonView.Find(tileViewId).gameObject;
         tile.GetComponent<Property>().Owner = this;
+        Debug.Log($"tile {tileViewId} changed to owner {this._photonView.ViewID}");
     }
 }
