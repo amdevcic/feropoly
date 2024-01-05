@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class UIManager : MonoBehaviourPunCallbacks
 {
     public static UIManager Instance{ get; private set; }
@@ -15,6 +16,7 @@ public class UIManager : MonoBehaviourPunCallbacks
     public Transform _playerInfoContainer;
     public Transform _eventLogContainer;
     public GameObject _eventLogPrefab;
+    public ScrollRect _eventLogScroll;
 
     public void HideAll()
     {
@@ -33,6 +35,8 @@ public class UIManager : MonoBehaviourPunCallbacks
             _endTurnButton.interactable = false;
             
             Log($"Ti si na redu.", true);
+
+            return;
         }
         
         Log($"<color=orange>{playerName}</color> je na redu.", true);
@@ -52,15 +56,12 @@ public class UIManager : MonoBehaviourPunCallbacks
 
     public void Log(string text, bool local = false)
     {
-        //no op dok se ne implementira u scenu
-        return;
-
-        // if (local) {
-        //     LogRPC(text);
-        // }
-        // else {
-        //     photonView.RPC(nameof(LogRPC), RpcTarget.All, new object[] { text });
-        // }
+        if (local) {
+            LogRPC(text);
+        }
+        else {
+            photonView.RPC(nameof(LogRPC), RpcTarget.All, new object[] { text });
+        }
     }
 
     [PunRPC]
@@ -68,6 +69,7 @@ public class UIManager : MonoBehaviourPunCallbacks
     {
         GameObject log = Instantiate(_eventLogPrefab, _eventLogContainer) as GameObject;
         log.GetComponentInChildren<TMP_Text>().text = text;
+        _eventLogScroll.velocity = new Vector2(0, 1000.0f);
     }
 
     private void Awake() 

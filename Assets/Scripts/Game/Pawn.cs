@@ -51,9 +51,9 @@ public class Pawn : MonoBehaviourPunCallbacks, IPunInstantiateMagicCallback
         if (other) 
         {
             other.GetMoney(moneyToPay);
-            UIManager.Instance.Log($"<color=orange>{name}</color> je platio <color=green>{moneyToPay}€</color>" 
-                + (other ? $" igraču <color=orange>{other.name}</color>" : "") + ".");
         }
+        UIManager.Instance.Log($"<color=orange>{name}</color> je platio <color=green>{moneyToPay}€</color>" 
+                + (other ? $" igraču <color=orange>{other.name}</color>" : "") + ".");
     }
 
     [PunRPC]
