@@ -181,11 +181,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8166984632814864944, guid: cfab79a44df8453489dce63aa88e22d3, type: 3}
       propertyPath: sceneViewId
-<<<<<<< HEAD
       value: 14
-=======
-      value: 36
->>>>>>> 32789358b744329098277036756787420e4a4a5c
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -255,11 +251,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8166984632814864944, guid: cfab79a44df8453489dce63aa88e22d3, type: 3}
       propertyPath: sceneViewId
-<<<<<<< HEAD
       value: 8
-=======
-      value: 34
->>>>>>> 32789358b744329098277036756787420e4a4a5c
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -369,11 +361,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4653535891453699693, guid: 86339da255a799f479281c24797cdd31, type: 3}
       propertyPath: sceneViewId
-<<<<<<< HEAD
       value: 37
-=======
-      value: 17
->>>>>>> 32789358b744329098277036756787420e4a4a5c
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -522,11 +510,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8147716882686023963, guid: f836dcb6c2784214f892d42d59491e35, type: 3}
       propertyPath: sceneViewId
-<<<<<<< HEAD
       value: 18
-=======
-      value: 6
->>>>>>> 32789358b744329098277036756787420e4a4a5c
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -636,11 +620,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4653535891453699693, guid: 86339da255a799f479281c24797cdd31, type: 3}
       propertyPath: sceneViewId
-<<<<<<< HEAD
       value: 36
-=======
-      value: 30
->>>>>>> 32789358b744329098277036756787420e4a4a5c
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -750,11 +730,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4653535891453699693, guid: 86339da255a799f479281c24797cdd31, type: 3}
       propertyPath: sceneViewId
-<<<<<<< HEAD
       value: 16
-=======
-      value: 31
->>>>>>> 32789358b744329098277036756787420e4a4a5c
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1155,11 +1131,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4653535891453699693, guid: 86339da255a799f479281c24797cdd31, type: 3}
       propertyPath: sceneViewId
-<<<<<<< HEAD
       value: 6
-=======
-      value: 14
->>>>>>> 32789358b744329098277036756787420e4a4a5c
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1242,11 +1214,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2687045526216418084, guid: b8e3b560b38b1f44ebd8ca8525f97e2c, type: 3}
       propertyPath: sceneViewId
-<<<<<<< HEAD
       value: 33
-=======
-      value: 7
->>>>>>> 32789358b744329098277036756787420e4a4a5c
       objectReference: {fileID: 0}
     - target: {fileID: 6157464209333859040, guid: b8e3b560b38b1f44ebd8ca8525f97e2c, type: 3}
       propertyPath: m_LocalScale.x
@@ -1805,11 +1773,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4653535891453699693, guid: 86339da255a799f479281c24797cdd31, type: 3}
       propertyPath: sceneViewId
-<<<<<<< HEAD
       value: 25
-=======
-      value: 21
->>>>>>> 32789358b744329098277036756787420e4a4a5c
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1919,11 +1883,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4653535891453699693, guid: 86339da255a799f479281c24797cdd31, type: 3}
       propertyPath: sceneViewId
-<<<<<<< HEAD
       value: 23
-=======
-      value: 27
->>>>>>> 32789358b744329098277036756787420e4a4a5c
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2187,11 +2147,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4653535891453699693, guid: 86339da255a799f479281c24797cdd31, type: 3}
       propertyPath: sceneViewId
-<<<<<<< HEAD
       value: 35
-=======
-      value: 24
->>>>>>> 32789358b744329098277036756787420e4a4a5c
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2379,11 +2335,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4653535891453699693, guid: 86339da255a799f479281c24797cdd31, type: 3}
       propertyPath: sceneViewId
-<<<<<<< HEAD
       value: 27
-=======
-      value: 25
->>>>>>> 32789358b744329098277036756787420e4a4a5c
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2493,11 +2445,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4653535891453699693, guid: 86339da255a799f479281c24797cdd31, type: 3}
       propertyPath: sceneViewId
-<<<<<<< HEAD
       value: 24
-=======
-      value: 19
->>>>>>> 32789358b744329098277036756787420e4a4a5c
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2563,11 +2511,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5545052087712819533, guid: dcb55795b7340bb4fa90d9cae2c5014b, type: 3}
       propertyPath: sceneViewId
-<<<<<<< HEAD
       value: 31
-=======
-      value: 11
->>>>>>> 32789358b744329098277036756787420e4a4a5c
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2633,11 +2577,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5545052087712819533, guid: dcb55795b7340bb4fa90d9cae2c5014b, type: 3}
       propertyPath: sceneViewId
-<<<<<<< HEAD
       value: 5
-=======
-      value: 10
->>>>>>> 32789358b744329098277036756787420e4a4a5c
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2812,11 +2752,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8166984632814864944, guid: cfab79a44df8453489dce63aa88e22d3, type: 3}
       propertyPath: sceneViewId
-<<<<<<< HEAD
       value: 26
-=======
-      value: 37
->>>>>>> 32789358b744329098277036756787420e4a4a5c
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2926,11 +2862,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4653535891453699693, guid: 86339da255a799f479281c24797cdd31, type: 3}
       propertyPath: sceneViewId
-<<<<<<< HEAD
       value: 22
-=======
-      value: 18
->>>>>>> 32789358b744329098277036756787420e4a4a5c
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3000,11 +2932,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8166984632814864944, guid: cfab79a44df8453489dce63aa88e22d3, type: 3}
       propertyPath: sceneViewId
-<<<<<<< HEAD
       value: 15
-=======
-      value: 35
->>>>>>> 32789358b744329098277036756787420e4a4a5c
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3405,11 +3333,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4653535891453699693, guid: 86339da255a799f479281c24797cdd31, type: 3}
       propertyPath: sceneViewId
-<<<<<<< HEAD
       value: 30
-=======
-      value: 22
->>>>>>> 32789358b744329098277036756787420e4a4a5c
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3519,11 +3443,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4653535891453699693, guid: 86339da255a799f479281c24797cdd31, type: 3}
       propertyPath: sceneViewId
-<<<<<<< HEAD
       value: 29
-=======
-      value: 28
->>>>>>> 32789358b744329098277036756787420e4a4a5c
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3633,11 +3553,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4653535891453699693, guid: 86339da255a799f479281c24797cdd31, type: 3}
       propertyPath: sceneViewId
-<<<<<<< HEAD
       value: 28
-=======
-      value: 33
->>>>>>> 32789358b744329098277036756787420e4a4a5c
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3659,11 +3575,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 80780333277252106, guid: d016c41ddcb124341b4d0191e13a6453, type: 3}
       propertyPath: sceneViewId
-<<<<<<< HEAD
       value: 3
-=======
-      value: 5
->>>>>>> 32789358b744329098277036756787420e4a4a5c
       objectReference: {fileID: 0}
     - target: {fileID: 8153492181852363726, guid: d016c41ddcb124341b4d0191e13a6453, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4085,11 +3997,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 80780333277252106, guid: d016c41ddcb124341b4d0191e13a6453, type: 3}
       propertyPath: sceneViewId
-<<<<<<< HEAD
       value: 21
-=======
-      value: 4
->>>>>>> 32789358b744329098277036756787420e4a4a5c
       objectReference: {fileID: 0}
     - target: {fileID: 8153492181852363726, guid: d016c41ddcb124341b4d0191e13a6453, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4212,14 +4120,9 @@ MonoBehaviour:
   _endTurnButton: {fileID: 1743694520}
   _playerInfoPrefab: {fileID: 1727389236364813684, guid: 9558dbfd6b4353449a0dad905412bcd0, type: 3}
   _playerInfoContainer: {fileID: 267358962}
-<<<<<<< HEAD
   _eventLogContainer: {fileID: 202691002}
   _eventLogPrefab: {fileID: 8988993444992301854, guid: e04e28d98eb96bc4fb8640f825cd98e2, type: 3}
   _eventLogScroll: {fileID: 1531680703}
-=======
-  _eventLogContainer: {fileID: 0}
-  _eventLogPrefab: {fileID: 0}
->>>>>>> 32789358b744329098277036756787420e4a4a5c
 --- !u!114 &1437001029
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4371,11 +4274,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4653535891453699693, guid: 86339da255a799f479281c24797cdd31, type: 3}
       propertyPath: sceneViewId
-<<<<<<< HEAD
       value: 4
-=======
-      value: 29
->>>>>>> 32789358b744329098277036756787420e4a4a5c
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4727,11 +4626,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4653535891453699693, guid: 86339da255a799f479281c24797cdd31, type: 3}
       propertyPath: sceneViewId
-<<<<<<< HEAD
       value: 34
-=======
-      value: 23
->>>>>>> 32789358b744329098277036756787420e4a4a5c
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4841,11 +4736,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4653535891453699693, guid: 86339da255a799f479281c24797cdd31, type: 3}
       propertyPath: sceneViewId
-<<<<<<< HEAD
       value: 13
-=======
-      value: 15
->>>>>>> 32789358b744329098277036756787420e4a4a5c
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4871,11 +4762,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2687045526216418084, guid: b8e3b560b38b1f44ebd8ca8525f97e2c, type: 3}
       propertyPath: sceneViewId
-<<<<<<< HEAD
       value: 17
-=======
-      value: 8
->>>>>>> 32789358b744329098277036756787420e4a4a5c
       objectReference: {fileID: 0}
     - target: {fileID: 6157464209333859040, guid: b8e3b560b38b1f44ebd8ca8525f97e2c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5029,11 +4916,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4653535891453699693, guid: 86339da255a799f479281c24797cdd31, type: 3}
       propertyPath: sceneViewId
-<<<<<<< HEAD
       value: 12
-=======
-      value: 32
->>>>>>> 32789358b744329098277036756787420e4a4a5c
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5139,11 +5022,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4653535891453699693, guid: 86339da255a799f479281c24797cdd31, type: 3}
       propertyPath: sceneViewId
-<<<<<<< HEAD
       value: 7
-=======
-      value: 12
->>>>>>> 32789358b744329098277036756787420e4a4a5c
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5512,11 +5391,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4653535891453699693, guid: 86339da255a799f479281c24797cdd31, type: 3}
       propertyPath: sceneViewId
-<<<<<<< HEAD
       value: 11
-=======
-      value: 26
->>>>>>> 32789358b744329098277036756787420e4a4a5c
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5538,11 +5413,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 80780333277252106, guid: d016c41ddcb124341b4d0191e13a6453, type: 3}
       propertyPath: sceneViewId
-<<<<<<< HEAD
       value: 10
-=======
-      value: 3
->>>>>>> 32789358b744329098277036756787420e4a4a5c
       objectReference: {fileID: 0}
     - target: {fileID: 8153492181852363726, guid: d016c41ddcb124341b4d0191e13a6453, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5696,11 +5567,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4653535891453699693, guid: 86339da255a799f479281c24797cdd31, type: 3}
       propertyPath: sceneViewId
-<<<<<<< HEAD
       value: 32
-=======
-      value: 16
->>>>>>> 32789358b744329098277036756787420e4a4a5c
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5944,11 +5811,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4653535891453699693, guid: 86339da255a799f479281c24797cdd31, type: 3}
       propertyPath: sceneViewId
-<<<<<<< HEAD
       value: 19
-=======
-      value: 13
->>>>>>> 32789358b744329098277036756787420e4a4a5c
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
