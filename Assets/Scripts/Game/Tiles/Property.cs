@@ -1,4 +1,5 @@
 using UnityEngine;
+using Photon.Pun;
 
 public enum PropertyColor {
     BROWN, LIGHTBLUE, MAGENTA, ORANGE, RED, YELLOW, GREEN, BLUE
@@ -7,18 +8,24 @@ public enum PropertyColor {
 [System.Serializable]
 public class Property : Tile
 {
-    public int Price;
+    public int BuyPrice;
+    public int[] RentPrices;
+    public int rentIndex;
     public PropertyColor Color;
     public Pawn Owner {get; set;}
 
     public override void OnActivate(Pawn player) {
         if (!this.Owner) {
             // player buys property
-            player.PayMoney(this.Price, null);
-            this.Owner = player;
-        } else {
+            player.PayMoney(this.BuyPrice, null);
+            if(!this._photonView)
+                Debug.Log($"Sad");
+            player.ChangeOwner(this._photonView.ViewID);
+        } else if(this.Owner != player) {
             // player pays owner
-            player.PayMoney(this.Price, this.Owner);
+            Debug.Log($"player pays price {this.RentPrices[rentIndex]} to other");
+            player.PayMoney(this.RentPrices[rentIndex], this.Owner);
         }
     }
+
 }

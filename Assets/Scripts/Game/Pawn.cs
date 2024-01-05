@@ -4,6 +4,7 @@ using UnityEngine;
 using Photon.Pun;
 using UnityEngine.Events;
 
+
 public class Pawn : MonoBehaviourPunCallbacks, IPunInstantiateMagicCallback
 {
     const int STARTING_MONEY = 1500;
@@ -31,24 +32,24 @@ public class Pawn : MonoBehaviourPunCallbacks, IPunInstantiateMagicCallback
     [PunRPC]
     public void MoveToRPC(Vector3 dest, int space)
     {
-        Debug.Log($"player moves to space {space}");
+        Debug.Log($"tile moves to space {space}");
         transform.position = dest;
         this.space = space;
     }
 
     [PunRPC]
-    private void PayRPC(int moneyToPay, Pawn other) 
+    private void PayRPC(int moneyToPay) 
     {
         Money -= moneyToPay;
-        // if other is null, pay the bank
-        if (other) 
-            other.GetMoney(moneyToPay);
         moneyChanged.Invoke();
     }
 
     public void PayMoney(int moneyToPay, Pawn other) 
     {
-        photonView.RPC(nameof(PayRPC), RpcTarget.All, new object[] { moneyToPay, other });
+        photonView.RPC(nameof(PayRPC), RpcTarget.All, new object[] { moneyToPay });
+        // if other is null, pay the bank
+        if (other)
+            other.GetMoney(moneyToPay);
     }
 
     [PunRPC]
@@ -61,5 +62,17 @@ public class Pawn : MonoBehaviourPunCallbacks, IPunInstantiateMagicCallback
     public void GetMoney(int paidMoney)
     {
         photonView.RPC(nameof(GetMoneyRPC), RpcTarget.All, new object[] { paidMoney });
+    }
+
+    public void ChangeOwner(int tileViewId)
+    {
+        photonView.RPC(nameof(ChangeOwnerRPC), RpcTarget.All, new object[] { tileViewId });
+    }
+
+    [PunRPC]
+    private void ChangeOwnerRPC(int tileViewId) 
+    {
+        GameObject tile = PhotonView.Find(tileViewId).gameObject;
+        tile.GetComponent<Property>().Owner = this;
     }
 }
