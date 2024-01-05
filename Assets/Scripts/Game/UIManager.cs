@@ -13,13 +13,15 @@ public class UIManager : MonoBehaviourPunCallbacks
     public Button _endTurnButton;
     public GameObject _playerInfoPrefab;
     public Transform _playerInfoContainer;
+    public Transform _eventLogContainer;
+    public GameObject _eventLogPrefab;
 
     public void HideAll()
     {
         _dicePanel.SetActive(false);
     }
 
-    public void BeginTurn(bool myTurn)
+    public void BeginTurn(bool myTurn, string playerName)
     {
         HideAll();
 
@@ -29,7 +31,11 @@ public class UIManager : MonoBehaviourPunCallbacks
             
             _rollButton.interactable = true;
             _endTurnButton.interactable = false;
+            
+            Log($"Ti si na redu.", true);
         }
+        
+        Log($"<color=orange>{playerName}</color> je na redu.", true);
     }
 
     public void RollDice(int value)
@@ -42,6 +48,26 @@ public class UIManager : MonoBehaviourPunCallbacks
     public void DisplayPlayer(Player player) 
     {
         GameObject info = PhotonNetwork.Instantiate(_playerInfoPrefab.name, Vector3.zero, Quaternion.identity) as GameObject;
+    }
+
+    public void Log(string text, bool local = false)
+    {
+        //no op dok se ne implementira u scenu
+        return;
+
+        // if (local) {
+        //     LogRPC(text);
+        // }
+        // else {
+        //     photonView.RPC(nameof(LogRPC), RpcTarget.All, new object[] { text });
+        // }
+    }
+
+    [PunRPC]
+    private void LogRPC(string text) 
+    {
+        GameObject log = Instantiate(_eventLogPrefab, _eventLogContainer) as GameObject;
+        log.GetComponentInChildren<TMP_Text>().text = text;
     }
 
     private void Awake() 

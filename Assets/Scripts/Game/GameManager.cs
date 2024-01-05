@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     Pawn localPawn;
 
     [SerializeField]
-    public byte playerTurn = 1;
+    public byte playerTurn = 0;
 
     public override void OnLeftRoom()
     {
@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     public void LeaveRoom()
     {
+        UIManager.Instance.Log($"<color=orange>{PhotonNetwork.LocalPlayer.NickName}</color> je izašao iz igre.");
         PhotonNetwork.LeaveRoom();
     }
 
@@ -37,7 +38,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         if (myTurn) {
             Debug.Log("Your turn");
         }
-        UIManager.Instance.BeginTurn(myTurn);
+        UIManager.Instance.BeginTurn(myTurn, PhotonNetwork.PlayerList[playerTurn].NickName);
     }
 
     [PunRPC]
@@ -84,6 +85,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                                       spawnPoint.position + Vector3.back * (PhotonNetwork.LocalPlayer.ActorNumber - 1) * 0.1f, 
                                       Quaternion.identity, 0) as GameObject;
             UIManager.Instance.DisplayPlayer(PhotonNetwork.LocalPlayer);
+            UIManager.Instance.Log($"<color=orange>{PhotonNetwork.LocalPlayer.NickName}</color> se pridružio igri.");
             pawn.name = PhotonNetwork.LocalPlayer.NickName;
         }
 
