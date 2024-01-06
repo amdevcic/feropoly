@@ -14,11 +14,12 @@ public class CanvasManager : MonoBehaviour
     [SerializeField] private GameObject _errorMenu;
     [SerializeField] private TMP_Text _roomName;
     [SerializeField] private TMP_Text _errorText;
+    [SerializeField] private GameObject _connectingText;
 
     private void Awake()
     {
         TurnOff();
-        _gameMenu.SetActive(true);
+        _connectingText.SetActive(true);
     }
     public void OpenGameMenu()
     {
@@ -60,6 +61,7 @@ public class CanvasManager : MonoBehaviour
         _loadMenu.SetActive(false);
         _roomMenu.SetActive(false);
         _errorMenu.SetActive(false);
+        _connectingText.SetActive(false);
     }
     public void Quit()
     {
