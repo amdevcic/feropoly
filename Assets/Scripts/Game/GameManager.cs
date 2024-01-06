@@ -10,13 +10,15 @@ using Photon.Pun.UtilityScripts;
 [RequireComponent(typeof(PhotonView))]
 public class GameManager : MonoBehaviourPunCallbacks
 {
-    public GameObject playerPrefab;
-    public Transform spawnPoint;
+    [SerializeField]
+    private GameObject _playerPrefab;
+    
+    [SerializeField]
+    private Transform _spawnPoint;
     private PhotonView _photonView;
-    Pawn localPawn;
 
     [SerializeField]
-    public byte playerTurn = 0;
+    private byte playerTurn = 0;
 
     public override void OnLeftRoom()
     {
@@ -25,6 +27,10 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     public void LeaveRoom()
     {
+        if (PhotonNetwork.PlayerList[playerTurn].IsLocal)
+        {
+            EndTurn();
+        }
         UIManager.Instance.Log($"<color=orange>{PhotonNetwork.LocalPlayer.NickName}</color> je izašao iz igre.");
         PhotonNetwork.LeaveRoom();
     }
@@ -50,11 +56,12 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     public void Roll()
     {
-        int value = Random.Range(1, 7);
-        UIManager.Instance.RollDice(value);
+        int value1 = Random.Range(1, 7);
+        int value2 = Random.Range(1, 7);
+        UIManager.Instance.RollDice(value1, value2);
 
         //move player
-        BoardManager.Instance.MovePlayerSpaces(PhotonNetwork.PlayerList[playerTurn], value);
+        BoardManager.Instance.MovePlayerSpaces(PhotonNetwork.PlayerList[playerTurn], value1 + value2);
     }
 
     private void Awake() 
@@ -69,7 +76,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     void Start()
     {
-        if (playerPrefab == null)
+        if (_playerPrefab == null)
         {
             Debug.LogError("<Color=Red><a>Missing</a></Color> playerPrefab Reference. Please set it up in GameObject 'Game Manager'",this);
         }
@@ -78,8 +85,8 @@ public class GameManager : MonoBehaviourPunCallbacks
         {
             Debug.LogFormat("Instantiating LocalPlayer");
             // we're in a room. spawn a character for the local player. it gets synced by using PhotonNetwork.Instantiate
-            GameObject pawn = PhotonNetwork.Instantiate(this.playerPrefab.name, 
-                                      spawnPoint.position + Vector3.back * (PhotonNetwork.LocalPlayer.ActorNumber - 1) * 0.1f, 
+            GameObject pawn = PhotonNetwork.Instantiate(this._playerPrefab.name, 
+                                      _spawnPoint.position + Vector3.back * (PhotonNetwork.LocalPlayer.ActorNumber - 1) * 0.1f, 
                                       Quaternion.identity, 0) as GameObject;
 
             UIManager.Instance.DisplayPlayer(PhotonNetwork.LocalPlayer);

@@ -8,20 +8,31 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviourPunCallbacks
 {
     public static UIManager Instance{ get; private set; }
+
+    [Header("Dice rolling")]
+    public GameObject _rollPanel;
     public GameObject _dicePanel;
-    public TextMeshProUGUI _diceText;
+    public TextMeshProUGUI _diceText1;
+    public TextMeshProUGUI _diceText2;
     public Button _rollButton;
     public Button _endTurnButton;
+
+    [Header("Player info panel")]
     public GameObject _playerInfoPrefab;
     public Transform _playerInfoContainer;
+
+    [Header("Event log")]
     public Transform _eventLogContainer;
     public GameObject _eventLogPrefab;
     public ScrollRect _eventLogScroll;
+
+    [Header("Property purchase")]
     public BuyConfirmation _buyConfirmation;
     public GameObject _buyConfirmationPanel;
 
     public void HideAll()
     {
+        _rollPanel.SetActive(false);
         _dicePanel.SetActive(false);
         hidePropertyBuyConfirmation();
     }
@@ -32,7 +43,8 @@ public class UIManager : MonoBehaviourPunCallbacks
 
         if (myTurn)
         {
-            _dicePanel.SetActive(true);
+            _rollPanel.SetActive(true);
+            _dicePanel.SetActive(false);
             
             _rollButton.interactable = true;
             _endTurnButton.interactable = false;
@@ -45,9 +57,12 @@ public class UIManager : MonoBehaviourPunCallbacks
         Log($"<color=orange>{playerName}</color> je na redu.", true);
     }
 
-    public void RollDice(int value)
+    public void RollDice(int value1, int value2)
     {
-        _diceText.text = value.ToString();
+        _dicePanel.SetActive(true);
+        _diceText1.text = value1.ToString();
+        _diceText2.text = value2.ToString();
+
         _rollButton.interactable = false;
         _endTurnButton.interactable = true;
     }
