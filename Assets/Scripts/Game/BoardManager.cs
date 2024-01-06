@@ -10,7 +10,7 @@ public class BoardManager : MonoBehaviour
     public static BoardManager Instance{ get; private set; }
     const int MAX_TILES = 40;
     const int MAX_PLAYERS = 8;
-    const int JAIL_INDEX = 9;
+    const int JAIL_INDEX = 10;
     public Tile[] Tiles { get; private set; }
     public Transform tileContainer;
     public Tile jailTile;
@@ -42,7 +42,8 @@ public class BoardManager : MonoBehaviour
 
     public void EndMovement(Pawn pawn)
     {
-        pawn.tile.OnActivate(pawn);
+        if(pawn.photonView.IsMine)
+            pawn.tile.OnActivate(pawn);
     }
 
     public void MovePlayerToJail(Player player)
