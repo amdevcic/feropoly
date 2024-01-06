@@ -37,6 +37,9 @@ public class UIManager : MonoBehaviourPunCallbacks
     [SerializeField] private GameObject _jailPanel;
     [SerializeField] private Button _getOutOfJailButton;
 
+    [Header("Debug")]
+    [SerializeField] private GameObject _debugPanel;
+
     public void HideAll()
     {
         _rollPanel.SetActive(false);
@@ -112,11 +115,11 @@ public class UIManager : MonoBehaviourPunCallbacks
         _eventLogScroll.velocity = new Vector2(0, 1000.0f);
     }
 
-    public void SetupPropertyBuy(string text, Property property, Pawn player) 
+    public void SetupPropertyBuy(string text, Property property, Pawn player, int buyFunction) 
     {
         _endTurnButton.interactable = false;
         _buyConfirmationPanel.SetActive(true);
-        _buyConfirmation.SetUp(text, property, player);
+        _buyConfirmation.SetUp(text, property, player, buyFunction);
     }
 
     public void HidePropertyBuyConfirmation()
@@ -125,15 +128,22 @@ public class UIManager : MonoBehaviourPunCallbacks
         _buyConfirmationPanel.SetActive(false);
     }
 
+    public void HideDebugMove()
+    {
+       _debugPanel.SetActive(false);
+    }
+
     private void Awake() 
     { 
         if (Instance != null && Instance != this) 
         { 
-            Destroy(this); 
+            HideDebugMove();
+            Destroy(this);
         } 
         else 
-        { 
+        {
             Instance = this; 
-        } 
+        }
+        
     }
 }

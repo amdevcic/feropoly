@@ -51,6 +51,7 @@ MonoBehaviour:
   - PayRPC
   - ChangeOwnerRPC
   - LogRPC
+  - BuyHouseRPC
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

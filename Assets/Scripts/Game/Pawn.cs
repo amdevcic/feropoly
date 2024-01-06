@@ -118,4 +118,17 @@ public class Pawn : MonoBehaviourPunCallbacks, IPunInstantiateMagicCallback
         tile.GetComponent<Property>().Owner = this;
         Debug.Log($"tile {tileViewId} changed to owner {this.PhotonView.ViewID}");
     }
+
+        public void BuyHouse(int tileViewId, int rentIndex)
+    {
+        photonView.RPC(nameof(BuyHouseRPC), RpcTarget.All, new object[] { tileViewId, rentIndex });
+    }
+
+    [PunRPC]
+    private void BuyHouseRPC(int tileViewId, int rentIndex) 
+    {
+        GameObject tile = PhotonView.Find(tileViewId).gameObject;
+        tile.GetComponent<Property>().rentIndex = rentIndex;
+        Debug.Log($"player {this.PhotonView.ViewID} bought house on tile {tileViewId}");
+    }
 }

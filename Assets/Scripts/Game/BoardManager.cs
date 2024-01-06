@@ -10,7 +10,7 @@ public class BoardManager : MonoBehaviour
     public static BoardManager Instance{ get; private set; }
     const int MAX_TILES = 40;
     const int MAX_PLAYERS = 8;
-    const int JAIL_INDEX = 10;
+    const int JAIL_INDEX = 9;
     public Tile[] Tiles { get; private set; }
     public Transform tileContainer;
     public Tile jailTile;
@@ -53,6 +53,12 @@ public class BoardManager : MonoBehaviour
         pawn.MoveTo(JAIL_INDEX);
     }
 
+    public void MovePlayerTo(Player player, int index)
+    {
+        Pawn pawn = getPlayerPawn(player);
+        pawn.MoveTo(index);
+    }
+
     private void Awake() 
     { 
         if (Instance != null && Instance != this) 
@@ -60,8 +66,8 @@ public class BoardManager : MonoBehaviour
             Destroy(this); 
         } 
         else 
-        { 
-            Instance = this; 
+        {
+            Instance = this;
         } 
     }
 
