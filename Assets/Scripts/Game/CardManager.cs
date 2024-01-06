@@ -50,7 +50,7 @@ public class CardManager : MonoBehaviour
 
     public void GetOutOfJailFree()
     {
-        // TODO: zatvor
+        localPawn.GetOutOfJailCards++;
     }
 
     public void GoBackSpaces(int spaces)

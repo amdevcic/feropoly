@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     [SerializeField] private Transform _spawnPoint;
     private byte playerTurn = 0;
     private PhotonView _photonView;
+    public Pawn localPawn;
 
     public override void OnLeftRoom()
     {
@@ -129,6 +130,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             UIManager.Instance.DisplayPlayer(PhotonNetwork.LocalPlayer);
             UIManager.Instance.Log($"<color=orange>{PhotonNetwork.LocalPlayer.NickName}</color> se pridružio igri.");
             pawn.name = PhotonNetwork.LocalPlayer.NickName;
+            localPawn = pawn.GetComponent<Pawn>();
 
             CardManager.Instance.Init();
         }

@@ -1,3 +1,4 @@
+using ExitGames.Client.Photon.StructWrapping;
 using Photon.Pun;
 using Photon.Realtime;
 using TMPro;
@@ -32,9 +33,14 @@ public class UIManager : MonoBehaviourPunCallbacks
     [SerializeField] private BuyConfirmation _buyConfirmation;
     [SerializeField] private GameObject _buyConfirmationPanel;
 
+    [Header("Jail")]
+    [SerializeField] private GameObject _jailPanel;
+    [SerializeField] private Button _getOutOfJailButton;
+
     public void HideAll()
     {
         _rollPanel.SetActive(false);
+        _jailPanel.SetActive(false);
         HidePropertyBuyConfirmation();
     }
 
@@ -44,21 +50,33 @@ public class UIManager : MonoBehaviourPunCallbacks
 
         if (myTurn)
         {
-            if (BoardManager.Instance.getPlayerPawn(player).InJail)
+            if (GameManager.Instance.localPawn.InJail)
             {
-                // TODO: opcije za izać iz zatvora
+                _endTurnButton.interactable = false;
+                _jailPanel.SetActive(true);
+
+                _getOutOfJailButton.interactable = GameManager.Instance.localPawn.GetOutOfJailCards > 0;
+                _getOutOfJailButton.GetComponentInChildren<TMP_Text>().text = $"Iskoristi ispričnicu ({GameManager.Instance.localPawn.GetOutOfJailCards})";
             }
-            _rollPanel.SetActive(true);
-            
-            _rollButton.interactable = true;
-            _endTurnButton.interactable = false;
-            
+            else
+            {
+                SetUpRoll();
+            }            
             Log($"Ti si na redu.", true);
 
             return;
         }
         
         Log($"<color=orange>{player.NickName}</color> je na redu.", true);
+    }
+
+    public void SetUpRoll()
+    {
+        HideAll();
+        _rollPanel.SetActive(true);
+            
+        _rollButton.interactable = true;
+        _endTurnButton.interactable = false;
     }
 
     public void RollDice(int value1, int value2)
@@ -96,12 +114,14 @@ public class UIManager : MonoBehaviourPunCallbacks
 
     public void SetupPropertyBuy(string text, Property property, Pawn player) 
     {
+        _endTurnButton.interactable = false;
         _buyConfirmationPanel.SetActive(true);
         _buyConfirmation.SetUp(text, property, player);
     }
 
     public void HidePropertyBuyConfirmation()
     {
+        _endTurnButton.interactable = true;
         _buyConfirmationPanel.SetActive(false);
     }
 
