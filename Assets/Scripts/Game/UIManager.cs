@@ -12,10 +12,11 @@ public class UIManager : MonoBehaviourPunCallbacks
     [Header("Dice rolling")]
     public GameObject _rollPanel;
     public GameObject _dicePanel;
-    public TextMeshProUGUI _diceText1;
-    public TextMeshProUGUI _diceText2;
+    public Image _dice1img;
+    public Image _dice2img;
     public Button _rollButton;
     public Button _endTurnButton;
+    [SerializeField] private Sprite[] _diceSprites;
 
     [Header("Player info panel")]
     public GameObject _playerInfoPrefab;
@@ -60,8 +61,8 @@ public class UIManager : MonoBehaviourPunCallbacks
     public void RollDice(int value1, int value2)
     {
         _dicePanel.SetActive(true);
-        _diceText1.text = value1.ToString();
-        _diceText2.text = value2.ToString();
+        _dice1img.sprite = _diceSprites[value1-1];
+        _dice2img.sprite = _diceSprites[value2-1];
 
         _rollButton.interactable = false;
         _endTurnButton.interactable = true;
