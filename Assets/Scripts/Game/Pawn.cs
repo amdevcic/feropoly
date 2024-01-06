@@ -129,6 +129,7 @@ public class Pawn : MonoBehaviourPunCallbacks, IPunInstantiateMagicCallback
     {
         GameObject tile = PhotonView.Find(tileViewId).gameObject;
         tile.GetComponent<Property>().rentIndex = rentIndex;
+        tile.GetComponent<Property>().ShowHouses(rentIndex);
         Debug.Log($"player {this.PhotonView.ViewID} bought house on tile {tileViewId}");
     }
 }

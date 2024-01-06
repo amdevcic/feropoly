@@ -15,6 +15,7 @@ public class Property : Tile
     public PropertyColor Color;
     public Pawn Owner {get; set;}
     public Property[] propertyFamily;
+    public PropertyHouses houses;
 
     public override void OnActivate(Pawn player) {
         if (!this.Owner) {
@@ -22,8 +23,18 @@ public class Property : Tile
             UIManager.Instance.SetupPropertyBuy($"Želite li kupiti posjed za {BuyPrice} €?", this, player, 0);
         } else if(this.Owner != player) {
             // player pays owner
-            Debug.Log($"player pays price {this.RentPrices[rentIndex]} to other");
-            player.PayMoney(this.RentPrices[rentIndex], this.Owner);
+            int rentPrice = this.RentPrices[rentIndex];
+            if(rentIndex == 0) {
+                bool checkOtherProperties = true;
+                foreach(Property p in propertyFamily) {
+                    if(p.Owner != this.Owner) checkOtherProperties = false;
+                }
+                if(checkOtherProperties) {
+                    rentPrice *= 2;
+                }
+            }
+            Debug.Log($"player pays price {rentPrice} to other");
+            player.PayMoney(rentPrice, this.Owner);
         }
         else {
             if(this.rentIndex < 5) {
@@ -48,4 +59,7 @@ public class Property : Tile
         player.BuyHouse(this._photonView.ViewID, rentIndex + 1);
     }
 
+    public void ShowHouses(int count) {
+        houses.DisplayHouses(count);
+    }
 }
