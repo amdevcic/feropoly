@@ -1,24 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
 using Photon.Pun;
-using Photon.Realtime;
-using Photon.Pun.UtilityScripts;
+
 
 [RequireComponent(typeof(PhotonView))]
 public class GameManager : MonoBehaviourPunCallbacks
 {
-    [SerializeField]
-    private GameObject _playerPrefab;
-    
-    [SerializeField]
-    private Transform _spawnPoint;
-    private PhotonView _photonView;
-
-    [SerializeField]
+    [SerializeField] private GameObject _playerPrefab;
+    [SerializeField] private Transform _spawnPoint;
     private byte playerTurn = 0;
+    private PhotonView _photonView;
 
     public override void OnLeftRoom()
     {
@@ -71,7 +62,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
             if (playerPawn.DoublesRolled >= 3)
             {
-                // go to jail
+                // TODO: go to jail
             }
 
             _photonView.RPC(nameof(BeginTurn), RpcTarget.All, new object[] { playerTurn });

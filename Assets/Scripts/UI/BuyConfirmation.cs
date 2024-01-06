@@ -19,11 +19,11 @@ public class BuyConfirmation : MonoBehaviour
     public void onClickConfirm()
     {
         _propertyRef.BuyProperty(_playerRef);
-        UIManager.Instance.hidePropertyBuyConfirmation();
+        UIManager.Instance.HidePropertyBuyConfirmation();
     }
 
     public void onClickCancel()
     {
-        UIManager.Instance.hidePropertyBuyConfirmation();
+        UIManager.Instance.HidePropertyBuyConfirmation();
     }
 }

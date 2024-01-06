@@ -6,16 +6,11 @@ using UnityEngine;
 
 public class DeckManager : MonoBehaviour
 {
-    private const int CHANCE_CARDS = 16;
-    private const int CHEST_CARDS = 16;
-
     public static DeckManager Instance { get; private set; }
 
-    [SerializeField]
-    private List<Card> chanceCards;
+    [SerializeField] private List<Card> chanceCards;
 
-    [SerializeField]
-    private List<Card> communityChestCards;
+    [SerializeField] private List<Card> communityChestCards;
 
     private List<Card> chanceDiscard;
     private List<Card> communityChestDiscard;
@@ -33,8 +28,6 @@ public class DeckManager : MonoBehaviour
         chanceCards.RemoveAt(0);
 
         UIManager.Instance.Log($"Izvukao kartu: <color=yellow>{card.text}</color>");
-
-        // aktiviraj karticu
         card.pullEvent.Invoke();
 
         chanceDiscard.Add(card);
@@ -53,13 +46,12 @@ public class DeckManager : MonoBehaviour
         communityChestCards.RemoveAt(0);
 
         UIManager.Instance.Log($"Izvukao kartu: <color=yellow>{card.text}</color>");
-
-        // aktiviraj karticu
         card.pullEvent.Invoke();
 
         communityChestDiscard.Add(card);
     }
 
+    // TODO: shuffle je trenutno lokalan i svaki igrač ima svoj deck, to nije dobro
     private static void Shuffle(List<Card> list) {
         var count = list.Count;
         var last = count - 1;
@@ -73,7 +65,6 @@ public class DeckManager : MonoBehaviour
 
     private void Start() 
     {
-
         Shuffle(chanceCards);
         Shuffle(communityChestCards);
 

@@ -25,7 +25,7 @@ public class BoardManager : MonoBehaviour
     public void MovePlayerSpaces(Player player, int spaces) 
     {
         Pawn pawn = getPlayerPawn(player);
-        int playerSpace = pawn.space;
+        int playerSpace = pawn.Space;
         int newSpace = (playerSpace + spaces) % tiles.Length;
         
         pawn.MoveTo(tiles[newSpace].transform.position, newSpace);

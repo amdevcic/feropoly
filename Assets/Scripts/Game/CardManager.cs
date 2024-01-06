@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class CardManager : MonoBehaviour
 {
-    public Pawn localPawn;
+    private Pawn localPawn;
     
     public static CardManager Instance { get; private set; }
 
@@ -22,7 +22,7 @@ public class CardManager : MonoBehaviour
 
     public void PayPerHouse(int house, int hotel)
     {
-        // no op dok ne dodamo kućice
+        // TODO: dodati kućice i hotele
     }
 
     public void PayAll(int money)
@@ -47,22 +47,22 @@ public class CardManager : MonoBehaviour
 
     public void GoToJail()
     {
-        // kad dodamo zatvor
+        // TODO: zatvor
     }
 
     public void GetOutOfJailFree()
     {
-
+        // TODO: zatvor
     }
 
     public void GoBackSpaces(int spaces)
     {
-
+        // TODO
     }
 
     public void GoTo(Tile tile)
     {
-
+        // TODO
     }
 
     private void Awake() 

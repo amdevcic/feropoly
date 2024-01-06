@@ -1,16 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using UnityEngine.Events;
 
 
+[RequireComponent(typeof(PhotonView))]
 public class Pawn : MonoBehaviourPunCallbacks, IPunInstantiateMagicCallback
 {
     const int STARTING_MONEY = 1500;
     public int Money { get; private set; }
     public byte DoublesRolled { get; set; }
-    public int space;
+    public int Space { get; set; }
     private PhotonView _photonView;
     public UnityEvent moneyChanged;
     public void OnPhotonInstantiate(PhotonMessageInfo info)
@@ -22,7 +21,7 @@ public class Pawn : MonoBehaviourPunCallbacks, IPunInstantiateMagicCallback
     private void Awake() 
     {
         _photonView = GetComponent<PhotonView>();
-        space = 0;
+        Space = 0;
         Money = STARTING_MONEY;
     }
 
@@ -34,9 +33,9 @@ public class Pawn : MonoBehaviourPunCallbacks, IPunInstantiateMagicCallback
     [PunRPC]
     public void MoveToRPC(Vector3 dest, int space)
     {
-        Debug.Log($"tile moves to space {space}");
+        Debug.Log($"player moves to space {space}");
         transform.position = dest;
-        this.space = space;
+        this.Space = space;
     }
 
     [PunRPC]

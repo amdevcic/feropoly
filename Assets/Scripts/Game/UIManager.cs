@@ -5,36 +5,37 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
+[RequireComponent(typeof(PhotonView))]
 public class UIManager : MonoBehaviourPunCallbacks
 {
     public static UIManager Instance{ get; private set; }
 
     [Header("Dice rolling")]
-    public GameObject _rollPanel;
-    public GameObject _dicePanel;
-    public Image _dice1img;
-    public Image _dice2img;
-    public Button _rollButton;
-    public Button _endTurnButton;
+    [SerializeField] private GameObject _rollPanel;
+    [SerializeField] private GameObject _dicePanel;
+    [SerializeField] private Image _dice1img;
+    [SerializeField] private Image _dice2img;
+    [SerializeField] private Button _rollButton;
+    [SerializeField] private Button _endTurnButton;
     [SerializeField] private Sprite[] _diceSprites;
 
     [Header("Player info panel")]
-    public GameObject _playerInfoPrefab;
-    public Transform _playerInfoContainer;
+    [SerializeField] private GameObject _playerInfoPrefab;
+    [SerializeField] private Transform _playerInfoContainer;
 
     [Header("Event log")]
-    public Transform _eventLogContainer;
-    public GameObject _eventLogPrefab;
-    public ScrollRect _eventLogScroll;
+    [SerializeField] private Transform _eventLogContainer;
+    [SerializeField] private GameObject _eventLogPrefab;
+    [SerializeField] private ScrollRect _eventLogScroll;
 
     [Header("Property purchase")]
-    public BuyConfirmation _buyConfirmation;
-    public GameObject _buyConfirmationPanel;
+    [SerializeField] private BuyConfirmation _buyConfirmation;
+    [SerializeField] private GameObject _buyConfirmationPanel;
 
     public void HideAll()
     {
         _rollPanel.SetActive(false);
-        hidePropertyBuyConfirmation();
+        HidePropertyBuyConfirmation();
     }
 
     public void BeginTurn(bool myTurn, string playerName)
@@ -95,7 +96,7 @@ public class UIManager : MonoBehaviourPunCallbacks
         _buyConfirmation.SetUp(text, property, player);
     }
 
-    public void hidePropertyBuyConfirmation()
+    public void HidePropertyBuyConfirmation()
     {
         _buyConfirmationPanel.SetActive(false);
     }
@@ -110,10 +111,5 @@ public class UIManager : MonoBehaviourPunCallbacks
         { 
             Instance = this; 
         } 
-    }
-
-    private void Start() 
-    {
-        // _playerName.text = PhotonNetwork.LocalPlayer.NickName;
     }
 }

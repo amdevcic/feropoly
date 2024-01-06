@@ -7,7 +7,7 @@ using Photon.Pun;
 [RequireComponent(typeof(PhotonView))]
 public abstract class Tile : MonoBehaviourPunCallbacks
 {
-    public string Name;
+    public string Name { get; set; }
     protected PhotonView _photonView;
     virtual public void OnActivate(Pawn player) {}
     virtual public void OnPass(Pawn player) {}
