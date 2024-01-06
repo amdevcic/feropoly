@@ -37,11 +37,11 @@ public class GameManager : MonoBehaviourPunCallbacks
         bool myTurn = PhotonNetwork.PlayerList[playerTurn].IsLocal;
 
         UIManager.Instance.BeginTurn(myTurn, PhotonNetwork.PlayerList[playerTurn]);
-        BoardManager.Instance.getPlayerPawn(PhotonNetwork.PlayerList[playerTurn]).DoublesRolled = 0;
     }
 
     public void EndTurn() 
     {
+        BoardManager.Instance.getPlayerPawn(PhotonNetwork.PlayerList[playerTurn]).DoublesRolled = 0;
         if (++playerTurn >= PhotonNetwork.CurrentRoom.PlayerCount) 
         {
             playerTurn = 0;

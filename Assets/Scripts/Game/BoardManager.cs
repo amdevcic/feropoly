@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,12 +11,12 @@ public class BoardManager : MonoBehaviour
     const int MAX_TILES = 40;
     const int MAX_PLAYERS = 8;
     const int JAIL_INDEX = 9;
-    Tile[] tiles;
+    public Tile[] Tiles { get; private set; }
     public Transform tileContainer;
     public Tile jailTile;
 
     private void Start() {
-        tiles = tileContainer.GetComponentsInChildren<Tile>();
+        Tiles = tileContainer.GetComponentsInChildren<Tile>();
     }
 
     public Pawn getPlayerPawn(Player player)
@@ -26,22 +27,29 @@ public class BoardManager : MonoBehaviour
     public void MovePlayerSpaces(Player player, int spaces) 
     {
         Pawn pawn = getPlayerPawn(player);
-        int playerSpace = pawn.Space;
-        int newSpace = (playerSpace + spaces) % tiles.Length;
+        int playerSpace = Array.IndexOf(Tiles, pawn.tile);
+        Debug.Log(playerSpace);
         
-        pawn.MoveTo(tiles[newSpace].transform.position, newSpace);
-
-        for (int i=playerSpace+1; i<=newSpace; i++)
+        int sp=playerSpace;
+        for (int i=1; i<=spaces; i++)
         {
-            tiles[i].OnPass(pawn);
+            sp = (playerSpace+i)%Tiles.Length;
+            Tiles[sp].OnPass(pawn);
+            pawn.MoveTo(sp);
         }
-        tiles[newSpace].OnActivate(pawn);
+        // Tiles[sp].OnActivate(pawn);
+    }
+
+    public void EndMovement(Pawn pawn)
+    {
+        pawn.tile.OnActivate(pawn);
     }
 
     public void MovePlayerToJail(Player player)
     {
         Pawn pawn = getPlayerPawn(player);
-        pawn.MoveTo(jailTile.transform.position, JAIL_INDEX);
+        // pawn.MoveTo(JAIL_INDEX, jailTile.transform.position);
+        pawn.MoveTo(JAIL_INDEX);
     }
 
     private void Awake() 

@@ -1,6 +1,9 @@
 using UnityEngine;
 using Photon.Pun;
 using UnityEngine.Events;
+using System.Collections;
+using System;
+using System.Linq;
 
 
 [RequireComponent(typeof(PhotonView))]
@@ -10,10 +13,13 @@ public class Pawn : MonoBehaviourPunCallbacks, IPunInstantiateMagicCallback
     public int Money { get; private set; }
     public byte DoublesRolled { get; set; }
     public byte GetOutOfJailCards { get; set; }
-    public int Space { get; set; }
+    // public int Space { get; set; }
+    public Tile tile;
     public bool InJail { get; set; }
     public PhotonView PhotonView { get; private set; }
     public UnityEvent moneyChanged;
+    private System.Collections.Generic.Queue<Tuple<Vector3, Vector3>> animationQueue;
+
     public void OnPhotonInstantiate(PhotonMessageInfo info)
     {
         info.Sender.TagObject = this.gameObject;
@@ -23,21 +29,50 @@ public class Pawn : MonoBehaviourPunCallbacks, IPunInstantiateMagicCallback
     private void Awake() 
     {
         PhotonView = GetComponent<PhotonView>();
-        Space = 0;
+        tile = Go.Instance;
         Money = STARTING_MONEY;
+        animationQueue = new System.Collections.Generic.Queue<Tuple<Vector3, Vector3>>();
     }
 
-    public void MoveTo(Vector3 dest, int space)
+    public void MoveTo(int space)
     {
-        PhotonView.RPC(nameof(MoveToRPC), RpcTarget.All, new object[] { dest, space });
+        PhotonView.RPC(nameof(MoveToRPC), RpcTarget.All, new object[] { space });
     }
 
     [PunRPC]
-    public void MoveToRPC(Vector3 dest, int space)
+    public void MoveToRPC(int space)
     {
         Debug.Log($"Player moves to space {space}");
-        transform.position = dest;
-        this.Space = space;
+        
+        animationQueue.Enqueue(new Tuple<Vector3, Vector3>(tile.transform.position, BoardManager.Instance.Tiles[space].transform.position));
+        this.tile = BoardManager.Instance.Tiles[space];
+
+        if (animationQueue.Count == 1)
+        {
+            StartCoroutine(AnimateMovement(transform.position, tile.transform.position));
+        }
+    }
+
+    public IEnumerator AnimateMovement(Vector3 start, Vector3 end)
+    {
+        float y = transform.position.y;
+        for (float i=0.0f; i<1.0f; i+=Time.deltaTime * 5)
+        {
+            Vector3 pos = Vector3.Lerp(start, end, i);
+            transform.position = new Vector3(pos.x, y+Mathf.Sin(i*Mathf.PI)*0.1f, pos.z);
+            yield return null;
+        }
+        animationQueue.Dequeue();
+        if (animationQueue.Count > 0)
+        {
+            var tuple = animationQueue.First();
+            StartCoroutine(AnimateMovement(tuple.Item1, tuple.Item2));
+        }
+        else
+        {
+            BoardManager.Instance.EndMovement(this);
+        }
+        yield return null;
     }
 
     [PunRPC]
