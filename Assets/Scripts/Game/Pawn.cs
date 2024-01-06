@@ -9,6 +9,7 @@ public class Pawn : MonoBehaviourPunCallbacks, IPunInstantiateMagicCallback
 {
     const int STARTING_MONEY = 1500;
     public int Money { get; private set; }
+    public byte DoublesRolled { get; set; }
     public int space;
     private PhotonView _photonView;
     public UnityEvent moneyChanged;

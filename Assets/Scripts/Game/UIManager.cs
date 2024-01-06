@@ -34,7 +34,6 @@ public class UIManager : MonoBehaviourPunCallbacks
     public void HideAll()
     {
         _rollPanel.SetActive(false);
-        _dicePanel.SetActive(false);
         hidePropertyBuyConfirmation();
     }
 
@@ -45,7 +44,6 @@ public class UIManager : MonoBehaviourPunCallbacks
         if (myTurn)
         {
             _rollPanel.SetActive(true);
-            _dicePanel.SetActive(false);
             
             _rollButton.interactable = true;
             _endTurnButton.interactable = false;

@@ -43,6 +43,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         bool myTurn = PhotonNetwork.PlayerList[playerTurn].IsLocal;
 
         UIManager.Instance.BeginTurn(myTurn, PhotonNetwork.PlayerList[playerTurn].NickName);
+        BoardManager.Instance.getPlayerPawn(PhotonNetwork.PlayerList[playerTurn]).DoublesRolled = 0;
     }
 
     public void EndTurn() 
@@ -62,6 +63,19 @@ public class GameManager : MonoBehaviourPunCallbacks
 
         //move player
         BoardManager.Instance.MovePlayerSpaces(PhotonNetwork.PlayerList[playerTurn], value1 + value2);
+
+        if (value1 == value2)
+        {
+            Pawn playerPawn = BoardManager.Instance.getPlayerPawn(PhotonNetwork.PlayerList[playerTurn]);
+            playerPawn.DoublesRolled++;
+
+            if (playerPawn.DoublesRolled >= 3)
+            {
+                // go to jail
+            }
+
+            _photonView.RPC(nameof(BeginTurn), RpcTarget.All, new object[] { playerTurn });
+        }
     }
 
     private void Awake() 
