@@ -38,12 +38,16 @@ public class UIManager : MonoBehaviourPunCallbacks
         HidePropertyBuyConfirmation();
     }
 
-    public void BeginTurn(bool myTurn, string playerName)
+    public void BeginTurn(bool myTurn, Player player)
     {
         HideAll();
 
         if (myTurn)
         {
+            if (BoardManager.Instance.getPlayerPawn(player).InJail)
+            {
+                // TODO: opcije za izać iz zatvora
+            }
             _rollPanel.SetActive(true);
             
             _rollButton.interactable = true;
@@ -54,7 +58,7 @@ public class UIManager : MonoBehaviourPunCallbacks
             return;
         }
         
-        Log($"<color=orange>{playerName}</color> je na redu.", true);
+        Log($"<color=orange>{player.NickName}</color> je na redu.", true);
     }
 
     public void RollDice(int value1, int value2)

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine;
@@ -47,7 +45,7 @@ public class CardManager : MonoBehaviour
 
     public void GoToJail()
     {
-        // TODO: zatvor
+        GameManager.Instance.SendPlayerToJail();
     }
 
     public void GetOutOfJailFree()

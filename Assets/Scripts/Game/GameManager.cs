@@ -1,11 +1,13 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Photon.Pun;
+using Photon.Realtime;
 
 
 [RequireComponent(typeof(PhotonView))]
 public class GameManager : MonoBehaviourPunCallbacks
 {
+    public static GameManager Instance{ get; private set; }
     [SerializeField] private GameObject _playerPrefab;
     [SerializeField] private Transform _spawnPoint;
     private byte playerTurn = 0;
@@ -33,7 +35,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         Debug.Log($"Begin turn for player {playerTurn}");
         bool myTurn = PhotonNetwork.PlayerList[playerTurn].IsLocal;
 
-        UIManager.Instance.BeginTurn(myTurn, PhotonNetwork.PlayerList[playerTurn].NickName);
+        UIManager.Instance.BeginTurn(myTurn, PhotonNetwork.PlayerList[playerTurn]);
         BoardManager.Instance.getPlayerPawn(PhotonNetwork.PlayerList[playerTurn]).DoublesRolled = 0;
     }
 
@@ -48,34 +50,64 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     public void Roll()
     {
+        Pawn playerPawn = BoardManager.Instance.getPlayerPawn(PhotonNetwork.PlayerList[playerTurn]);
+
         int value1 = Random.Range(1, 7);
         int value2 = Random.Range(1, 7);
         UIManager.Instance.RollDice(value1, value2);
 
-        //move player
-        BoardManager.Instance.MovePlayerSpaces(PhotonNetwork.PlayerList[playerTurn], value1 + value2);
-
-        if (value1 == value2)
+        if (!playerPawn.InJail)
         {
-            Pawn playerPawn = BoardManager.Instance.getPlayerPawn(PhotonNetwork.PlayerList[playerTurn]);
-            playerPawn.DoublesRolled++;
+            BoardManager.Instance.MovePlayerSpaces(PhotonNetwork.PlayerList[playerTurn], value1 + value2);
 
-            if (playerPawn.DoublesRolled >= 3)
+            if (value1 == value2)
             {
-                // TODO: go to jail
-            }
+                playerPawn.DoublesRolled++;
+                if (playerPawn.DoublesRolled >= 3)
+                {
+                    SendPlayerToJail();
+                }
 
-            _photonView.RPC(nameof(BeginTurn), RpcTarget.All, new object[] { playerTurn });
+                _photonView.RPC(nameof(BeginTurn), RpcTarget.All, new object[] { playerTurn });
+            }
         }
+        else if (value1 == value2) 
+        {
+            GetPlayerOutOfJail();
+            BoardManager.Instance.MovePlayerSpaces(PhotonNetwork.PlayerList[playerTurn], value1 + value2);
+        }
+        
+    }
+
+    public void SendPlayerToJail()
+    {
+        Player activePlayer = PhotonNetwork.PlayerList[playerTurn];
+        BoardManager.Instance.MovePlayerToJail(activePlayer);
+        BoardManager.Instance.getPlayerPawn(activePlayer).InJail = true;
+    }
+
+    public void GetPlayerOutOfJail()
+    {
+        BoardManager.Instance.getPlayerPawn(PhotonNetwork.PlayerList[playerTurn]).InJail = false;
     }
 
     private void Awake() 
     {
+        if (Instance != null && Instance != this) 
+        { 
+            Destroy(this); 
+        } 
+        else 
+        { 
+            Instance = this; 
+        } 
+
         if (PhotonNetwork.CurrentRoom == null)
         {
             SceneManager.LoadScene(0);
             return;
         }
+
         _photonView = GetComponent<PhotonView>();
     }
 

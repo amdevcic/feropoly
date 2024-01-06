@@ -9,9 +9,10 @@ public class BoardManager : MonoBehaviour
     public static BoardManager Instance{ get; private set; }
     const int MAX_TILES = 40;
     const int MAX_PLAYERS = 8;
+    const int JAIL_INDEX = 9;
     Tile[] tiles;
     public Transform tileContainer;
-    public Transform pawnContainer;
+    public Tile jailTile;
 
     private void Start() {
         tiles = tileContainer.GetComponentsInChildren<Tile>();
@@ -35,6 +36,12 @@ public class BoardManager : MonoBehaviour
             tiles[i].OnPass(pawn);
         }
         tiles[newSpace].OnActivate(pawn);
+    }
+
+    public void MovePlayerToJail(Player player)
+    {
+        Pawn pawn = getPlayerPawn(player);
+        pawn.MoveTo(jailTile.transform.position, JAIL_INDEX);
     }
 
     private void Awake() 

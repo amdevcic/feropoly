@@ -10,7 +10,8 @@ public class Pawn : MonoBehaviourPunCallbacks, IPunInstantiateMagicCallback
     public int Money { get; private set; }
     public byte DoublesRolled { get; set; }
     public int Space { get; set; }
-    private PhotonView _photonView;
+    public bool InJail { get; set; }
+    public PhotonView PhotonView { get; private set; }
     public UnityEvent moneyChanged;
     public void OnPhotonInstantiate(PhotonMessageInfo info)
     {
@@ -20,20 +21,20 @@ public class Pawn : MonoBehaviourPunCallbacks, IPunInstantiateMagicCallback
 
     private void Awake() 
     {
-        _photonView = GetComponent<PhotonView>();
+        PhotonView = GetComponent<PhotonView>();
         Space = 0;
         Money = STARTING_MONEY;
     }
 
     public void MoveTo(Vector3 dest, int space)
     {
-        _photonView.RPC(nameof(MoveToRPC), RpcTarget.All, new object[] { dest, space });
+        PhotonView.RPC(nameof(MoveToRPC), RpcTarget.All, new object[] { dest, space });
     }
 
     [PunRPC]
     public void MoveToRPC(Vector3 dest, int space)
     {
-        Debug.Log($"player moves to space {space}");
+        Debug.Log($"Player moves to space {space}");
         transform.position = dest;
         this.Space = space;
     }
@@ -79,6 +80,6 @@ public class Pawn : MonoBehaviourPunCallbacks, IPunInstantiateMagicCallback
     {
         GameObject tile = PhotonView.Find(tileViewId).gameObject;
         tile.GetComponent<Property>().Owner = this;
-        Debug.Log($"tile {tileViewId} changed to owner {this._photonView.ViewID}");
+        Debug.Log($"tile {tileViewId} changed to owner {this.PhotonView.ViewID}");
     }
 }
