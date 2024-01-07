@@ -18,8 +18,6 @@ public class PlayerListItem : MonoBehaviourPunCallbacks
 
     public override void OnPlayerLeftRoom(Player otherPlayer)
     {
-        //check if this player left the room and remove him from the lsit if yes
-        //base.OnPlayerLeftRoom(otherPlayer);
         if (otherPlayer.Equals(_player))
         {
             Destroy(gameObject);
@@ -28,7 +26,6 @@ public class PlayerListItem : MonoBehaviourPunCallbacks
 
     public override void OnLeftRoom()
     {
-        // base.OnLeftRoom();
         Destroy(gameObject);
     }
 }

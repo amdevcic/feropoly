@@ -2,7 +2,7 @@ using UnityEngine;
 using Photon.Pun;
 
 public enum PropertyColor {
-    BROWN, LIGHTBLUE, MAGENTA, ORANGE, RED, YELLOW, GREEN, BLUE
+    BROWN, LIGHTBLUE, MAGENTA, ORANGE, RED, YELLOW, GREEN, BLUE, WATER, ELECTRICITY
 }
 
 [System.Serializable]
@@ -21,6 +21,7 @@ public class Property : Tile
         if (!this.Owner) {
             // player buys property
             UIManager.Instance.SetupPropertyBuy($"Želite li kupiti posjed za {BuyPrice} €?", this, player, 0);
+            UIManager.Instance.SetupPropertyCard(Name, RentPrices, HousePrice, Color, 0);
         } else if(this.Owner != player) {
             // player pays owner
             int rentPrice = this.RentPrices[rentIndex];
@@ -44,6 +45,7 @@ public class Property : Tile
                 }
                 if(checkOtherProperties) {
                     UIManager.Instance.SetupPropertyBuy($"Želite li kupiti kuću za {HousePrice} €?", this, player, 1);
+                    UIManager.Instance.SetupPropertyCard(name, RentPrices, HousePrice, Color, 0);
                 }
             }
         }

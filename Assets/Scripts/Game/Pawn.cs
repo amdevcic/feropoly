@@ -123,7 +123,7 @@ public class Pawn : MonoBehaviourPunCallbacks, IPunInstantiateMagicCallback
         Debug.Log($"tile {tileViewId} changed to owner {this.PhotonView.ViewID}");
     }
 
-        public void BuyHouse(int tileViewId, int rentIndex)
+    public void BuyHouse(int tileViewId, int rentIndex)
     {
         photonView.RPC(nameof(BuyHouseRPC), RpcTarget.All, new object[] { tileViewId, rentIndex });
     }

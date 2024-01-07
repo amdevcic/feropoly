@@ -11,6 +11,7 @@ public class Railroad : Tile
         if (!this.Owner) {
             // player buys property
             UIManager.Instance.SetupPropertyBuy($"Želite li kupiti zavod za {BuyPrice} €?", this, player, 2);
+            UIManager.Instance.SetupPropertyCard(Name, new int[]{RentPrice, RentPrice*2, RentPrice*3, RentPrice*4}, 0, PropertyColor.RED, 1);
         } else if(this.Owner != player) {
             // player pays owner
             int family = 1;

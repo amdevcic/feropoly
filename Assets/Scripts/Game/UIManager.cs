@@ -32,6 +32,8 @@ public class UIManager : MonoBehaviourPunCallbacks
     [Header("Property purchase")]
     [SerializeField] private BuyConfirmation _buyConfirmation;
     [SerializeField] private GameObject _buyConfirmationPanel;
+    [SerializeField] private PropertyCard _propertyCard;
+    [SerializeField] private GameObject _propertyCardPanel;
 
     [Header("Jail")]
     [SerializeField] private GameObject _jailPanel;
@@ -122,10 +124,17 @@ public class UIManager : MonoBehaviourPunCallbacks
         _buyConfirmation.SetUp(text, tile, player, buyFunction);
     }
 
+    public void SetupPropertyCard(string name, int[] rentPrices, int housePrice, PropertyColor color, int cardType) 
+    {
+        _propertyCard.SetUp(name, rentPrices, housePrice, color, cardType);
+        _propertyCardPanel.SetActive(true);
+    }
+
     public void HidePropertyBuyConfirmation()
     {
         _endTurnButton.interactable = true;
         _buyConfirmationPanel.SetActive(false);
+        _propertyCardPanel.SetActive(false);
     }
 
     public void HideDebugMove()

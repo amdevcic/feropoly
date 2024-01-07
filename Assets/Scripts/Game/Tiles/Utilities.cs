@@ -8,12 +8,14 @@ public class Utilities : Tile
     public int[] RentPrices = {4, 10};
     public Pawn Owner {get; set;}
     public Utilities[] utilityFamily;
+    public PropertyColor utilityType;
     public string _name;
 
     public override void OnActivate(Pawn player) {
         if (!this.Owner) {
             // player buys property
             UIManager.Instance.SetupPropertyBuy($"Želite li kupiti {_name} za {BuyPrice} €?", this, player, 3);
+            UIManager.Instance.SetupPropertyCard(Name, new int[]{}, 0, utilityType, 2);
         } else if(this.Owner != player) {
             // player pays owner
             int family = 0;
