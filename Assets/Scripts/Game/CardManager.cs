@@ -1,3 +1,4 @@
+using System;
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine;
@@ -55,13 +56,45 @@ public class CardManager : MonoBehaviour
 
     public void GoBackSpaces(int spaces)
     {
-        // TODO
+        BoardManager.Instance.MovePlayerSpaces(localPawn.photonView.Owner, spaces, true);
     }
 
     public void GoTo(Tile tile)
     {
-        // TODO
+        GameManager.Instance.MovePlayerTo(Array.IndexOf(BoardManager.Instance.Tiles, tile));
     }
+
+    public void GoToRailroad()
+    {
+        Tile[] railroads = Array.FindAll(BoardManager.Instance.Tiles, tile => tile.GetType() == typeof(Railroad));
+        int playerTile = Array.IndexOf(BoardManager.Instance.Tiles, localPawn.tile);
+        foreach (Tile tile in railroads)
+        {
+            int ix = Array.IndexOf(BoardManager.Instance.Tiles, tile);
+            if (playerTile < ix)
+            {
+                BoardManager.Instance.MovePlayerTo(localPawn.photonView.Owner, ix);
+                break;
+            }
+        }
+    }
+
+    public void GoToUtility()
+    {
+        Tile[] utilities = Array.FindAll(BoardManager.Instance.Tiles, tile => tile.GetType() == typeof(Utilities));
+        int playerTile = Array.IndexOf(BoardManager.Instance.Tiles, localPawn.tile);
+        foreach (Tile tile in utilities)
+        {
+            int ix = Array.IndexOf(BoardManager.Instance.Tiles, tile);
+            if (playerTile < ix)
+            {
+                BoardManager.Instance.MovePlayerTo(localPawn.photonView.Owner, ix);
+                break;
+            }
+        }
+    }
+
+
 
     private void Awake() 
     { 

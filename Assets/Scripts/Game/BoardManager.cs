@@ -24,16 +24,17 @@ public class BoardManager : MonoBehaviour
         return (player.TagObject as GameObject).GetComponent<Pawn>();
     }
 
-    public void MovePlayerSpaces(Player player, int spaces) 
+    public void MovePlayerSpaces(Player player, int spaces, bool backwards=false) 
     {
         Pawn pawn = getPlayerPawn(player);
         int playerSpace = Array.IndexOf(Tiles, pawn.tile);
         Debug.Log(playerSpace);
-        
+        int backwardsModifier = backwards ? -1 : 1;
+
         int sp=playerSpace;
         for (int i=1; i<=spaces; i++)
         {
-            sp = (playerSpace+i)%Tiles.Length;
+            sp = (playerSpace+i*backwardsModifier)%Tiles.Length;
             Tiles[sp].OnPass(pawn);
             pawn.MoveTo(sp);
         }

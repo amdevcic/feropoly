@@ -13,7 +13,6 @@ public class Pawn : MonoBehaviourPunCallbacks, IPunInstantiateMagicCallback
     public int Money { get; private set; }
     public byte DoublesRolled { get; set; }
     public byte GetOutOfJailCards { get; set; }
-    // public int Space { get; set; }
     public Tile tile;
     public bool InJail { get; set; }
     public PhotonView PhotonView { get; private set; }
