@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44300225, g: 0.49219102, b: 0.5719227, a: 1}
+  m_IndirectSpecularColor: {r: 0.44300252, g: 0.4921916, b: 0.5719237, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -8779,7 +8779,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chanceCards:
-  - text: go to boardwalk
+  - text: Odi do D2.
     pullEvent:
       m_PersistentCalls:
         m_Calls:
@@ -8795,7 +8795,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - text: advance to go
+  - text: Odi u KSET.
     pullEvent:
       m_PersistentCalls:
         m_Calls:
@@ -8811,7 +8811,73 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - text: "bank pays you dividend of 50\u20AC"
+  - text: Odi do A-202.
+    pullEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1437001030}
+          m_TargetAssemblyTypeName: CardManager, Assembly-CSharp
+          m_MethodName: GoTo
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 966003570}
+            m_ObjectArgumentAssemblyTypeName: Tile, Assembly-CSharp
+            m_IntArgument: 50
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - text: Odi do B1.
+    pullEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1437001030}
+          m_TargetAssemblyTypeName: CardManager, Assembly-CSharp
+          m_MethodName: GoTo
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 1600378516}
+            m_ObjectArgumentAssemblyTypeName: Tile, Assembly-CSharp
+            m_IntArgument: 50
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - text: "Odi do najbli\u017Eeg zavoda. Ako nema vlasnika, mo\u017Ee\u0161 ga kupiti.
+      Ako ima, plati dvostruku najamninu."
+    pullEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1437001030}
+          m_TargetAssemblyTypeName: CardManager, Assembly-CSharp
+          m_MethodName: GoTo
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: Tile, Assembly-CSharp
+            m_IntArgument: 50
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - text: "Odi do najbli\u017Ee usluge. Ako ima vlasnika, baci kocku i plati 10 puta
+      taj iznos."
+    pullEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1437001030}
+          m_TargetAssemblyTypeName: CardManager, Assembly-CSharp
+          m_MethodName: GoTo
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: Tile, Assembly-CSharp
+            m_IntArgument: 50
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - text: "FER ti plati stipendiju 50\u20AC."
     pullEvent:
       m_PersistentCalls:
         m_Calls:
@@ -8827,7 +8893,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - text: get out of jail free
+  - text: Izbjegni stegovnu besplatno.
     pullEvent:
       m_PersistentCalls:
         m_Calls:
@@ -8843,7 +8909,23 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - text: go to jail
+  - text: Pomakni se tri polja unatrag.
+    pullEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1437001030}
+          m_TargetAssemblyTypeName: CardManager, Assembly-CSharp
+          m_MethodName: GoBackSpaces
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 3
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - text: "Idi na stegovno. Idi direktno na stegovno, nemoj pro\u0107i KSET."
     pullEvent:
       m_PersistentCalls:
         m_Calls:
@@ -8859,23 +8941,8 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - text: "pay 15\u20AC"
-    pullEvent:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1437001030}
-          m_TargetAssemblyTypeName: CardManager, Assembly-CSharp
-          m_MethodName: PayMoney
-          m_Mode: 3
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 15
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - text: "pay all players 50\u20AC"
+  - text: "Popravi staru opremu. Za svaku knjigu daj 25\u20AC, a za svaki laptop
+      100\u20AC."
     pullEvent:
       m_PersistentCalls:
         m_Calls:
@@ -8891,8 +8958,57 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+  - text: "Izabran si za predsjednika studentskog vije\u0107a. Plati svakom kolegi
+      50\u20AC."
+    pullEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1437001030}
+          m_TargetAssemblyTypeName: CardManager, Assembly-CSharp
+          m_MethodName: PayAll
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 50
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - text: "Plati kaznu od 15\u20AC za prekora\u010Denje roka upisa."
+    pullEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1437001030}
+          m_TargetAssemblyTypeName: CardManager, Assembly-CSharp
+          m_MethodName: PayMoney
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 15
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - text: "Prodao si FPGA plo\u010Dicu za 100\u20AC."
+    pullEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1437001030}
+          m_TargetAssemblyTypeName: CardManager, Assembly-CSharp
+          m_MethodName: GetMoney
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 100
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
   communityChestCards:
-  - text: advance to go
+  - text: Odi u KSET.
     pullEvent:
       m_PersistentCalls:
         m_Calls:
@@ -8908,7 +9024,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - text: "collect 200\u20AC"
+  - text: "Sklopio si studentski ugovor. Preuzmi 200\u20AC."
     pullEvent:
       m_PersistentCalls:
         m_Calls:
@@ -8924,7 +9040,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - text: "pay 50\u20AC"
+  - text: "Plati lije\u010Dni\u010Dki pregled 50\u20AC."
     pullEvent:
       m_PersistentCalls:
         m_Calls:
@@ -8940,7 +9056,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - text: get out of jail free
+  - text: Izbjegni stegovnu besplatno.
     pullEvent:
       m_PersistentCalls:
         m_Calls:
@@ -8956,7 +9072,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - text: go to jail
+  - text: "Idi na stegovno. Idi direktno na stegovno, nemoj pro\u0107i KSET."
     pullEvent:
       m_PersistentCalls:
         m_Calls:
@@ -8972,7 +9088,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - text: "get 100\u20AC"
+  - text: "Ljetna stru\u010Dna praksa te pla\u0107a 100\u20AC."
     pullEvent:
       m_PersistentCalls:
         m_Calls:
@@ -8988,23 +9104,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - text: "pay 100\u20AC"
-    pullEvent:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1437001030}
-          m_TargetAssemblyTypeName: CardManager, Assembly-CSharp
-          m_MethodName: GetMoney
-          m_Mode: 3
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 100
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - text: "it's your birthday, get 10\u20AC from all players"
+  - text: "Ro\u0111endan ti je, primi 10\u20AC od svakog kolege."
     pullEvent:
       m_PersistentCalls:
         m_Calls:
@@ -9016,6 +9116,135 @@ MonoBehaviour:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 10
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - text: "Od studentskog osiguranja prima\u0161 100\u20AC."
+    pullEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1437001030}
+          m_TargetAssemblyTypeName: CardManager, Assembly-CSharp
+          m_MethodName: GetMoney
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 100
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - text: "Gre\u0161ka na ra\u010Dunu u menzi. Uzmi 20\u20AC."
+    pullEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1437001030}
+          m_TargetAssemblyTypeName: CardManager, Assembly-CSharp
+          m_MethodName: GetMoney
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 20
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - text: "Kopiraj skriptu za 10\u20AC."
+    pullEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1437001030}
+          m_TargetAssemblyTypeName: CardManager, Assembly-CSharp
+          m_MethodName: PayMoney
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 10
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - text: "Kupi ud\u017Ebenik za 100\u20AC."
+    pullEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1437001030}
+          m_TargetAssemblyTypeName: CardManager, Assembly-CSharp
+          m_MethodName: PayMoney
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 100
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - text: "Bio si demos. Uzmi 25\u20AC."
+    pullEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1437001030}
+          m_TargetAssemblyTypeName: CardManager, Assembly-CSharp
+          m_MethodName: GetMoney
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 25
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - text: "Popravi staru opremu. Za svaku knjigu daj 25\u20AC, a za svaki laptop
+      100\u20AC."
+    pullEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1437001030}
+          m_TargetAssemblyTypeName: CardManager, Assembly-CSharp
+          m_MethodName: GetMoney
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 25
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - text: "Osvojio si drugo mjesto na natjecanju u programiranju. Uzmi 10\u20AC."
+    pullEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1437001030}
+          m_TargetAssemblyTypeName: CardManager, Assembly-CSharp
+          m_MethodName: GetMoney
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 10
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - text: "Naslijedio si 100\u20AC."
+    pullEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1437001030}
+          m_TargetAssemblyTypeName: CardManager, Assembly-CSharp
+          m_MethodName: GetMoney
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 100
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
