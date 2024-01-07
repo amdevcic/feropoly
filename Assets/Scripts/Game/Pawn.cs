@@ -62,7 +62,10 @@ public class Pawn : MonoBehaviourPunCallbacks, IPunInstantiateMagicCallback
             transform.position = new Vector3(pos.x, y+Mathf.Sin(i*Mathf.PI)*0.1f, pos.z);
             yield return null;
         }
+        
+        transform.position = end;
         animationQueue.Dequeue();
+
         if (animationQueue.Count > 0)
         {
             var tuple = animationQueue.First();
