@@ -93,6 +93,11 @@ public class GameManager : MonoBehaviourPunCallbacks
         BoardManager.Instance.getPlayerPawn(PhotonNetwork.PlayerList[playerTurn]).InJail = false;
     }
 
+    public void ReducePlayerGetOutOfJailCards()
+    {
+        BoardManager.Instance.getPlayerPawn(PhotonNetwork.PlayerList[playerTurn]).GetOutOfJailCards--;
+    }
+
     public void MovePlayerTo(int index)
     {
         Player activePlayer = PhotonNetwork.PlayerList[playerTurn];
