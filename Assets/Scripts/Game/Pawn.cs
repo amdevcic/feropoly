@@ -18,6 +18,7 @@ public class Pawn : MonoBehaviourPunCallbacks, IPunInstantiateMagicCallback
     public bool InJail { get; set; }
     public PhotonView PhotonView { get; private set; }
     public UnityEvent moneyChanged;
+    public int DiceRoll { get; set; }
     private System.Collections.Generic.Queue<Tuple<Vector3, Vector3>> animationQueue;
 
     public void OnPhotonInstantiate(PhotonMessageInfo info)
@@ -134,5 +135,31 @@ public class Pawn : MonoBehaviourPunCallbacks, IPunInstantiateMagicCallback
         tile.GetComponent<Property>().rentIndex = rentIndex;
         tile.GetComponent<Property>().ShowHouses(rentIndex);
         Debug.Log($"player {this.PhotonView.ViewID} bought house on tile {tileViewId}");
+    }
+
+    public void ChangeRailroadOwner(int tileViewId)
+    {
+        photonView.RPC(nameof(ChangeRailroadOwnerRPC), RpcTarget.All, new object[] { tileViewId });
+    }
+
+    [PunRPC]
+    private void ChangeRailroadOwnerRPC(int tileViewId) 
+    {
+        GameObject tile = PhotonView.Find(tileViewId).gameObject;
+        tile.GetComponent<Railroad>().Owner = this;
+        Debug.Log($"tile {tileViewId} changed to owner {this.PhotonView.ViewID}");
+    }
+
+    public void ChangeUtilitiesOwner(int tileViewId)
+    {
+        photonView.RPC(nameof(ChangeUtilitiesOwnerRPC), RpcTarget.All, new object[] { tileViewId });
+    }
+
+    [PunRPC]
+    private void ChangeUtilitiesOwnerRPC(int tileViewId) 
+    {
+        GameObject tile = PhotonView.Find(tileViewId).gameObject;
+        tile.GetComponent<Utilities>().Owner = this;
+        Debug.Log($"tile {tileViewId} changed to owner {this.PhotonView.ViewID}");
     }
 }

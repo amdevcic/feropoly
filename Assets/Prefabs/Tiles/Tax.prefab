@@ -50,7 +50,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6695804736371856433, guid: b8e3b560b38b1f44ebd8ca8525f97e2c, type: 3}
       propertyPath: m_Name
-      value: Railroad
+      value: Tax
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -2566518942494881208, guid: b8e3b560b38b1f44ebd8ca8525f97e2c, type: 3}
@@ -59,14 +59,14 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 6695804736371856433, guid: b8e3b560b38b1f44ebd8ca8525f97e2c, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8591310248205361074}
+      addedObject: {fileID: 5536392006676018140}
   m_SourcePrefab: {fileID: 100100000, guid: b8e3b560b38b1f44ebd8ca8525f97e2c, type: 3}
 --- !u!1 &644294044892871973 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6695804736371856433, guid: b8e3b560b38b1f44ebd8ca8525f97e2c, type: 3}
   m_PrefabInstance: {fileID: 6060922520682342676}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &8591310248205361074
+--- !u!114 &5536392006676018140
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -75,9 +75,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 644294044892871973}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b21ce79e93a3064ca5981e10556b0d9, type: 3}
+  m_Script: {fileID: 11500000, guid: 01e4ef11779e12048b09c80b8aea33e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BuyPrice: 200
-  RentPrice: 50
-  railroadFamily: []
+  TaxPrice: 0

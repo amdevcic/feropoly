@@ -55,6 +55,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
         int value1 = Random.Range(1, 7);
         int value2 = Random.Range(1, 7);
+        playerPawn.DiceRoll = value1 + value2;
         UIManager.Instance.RollDice(value1, value2);
 
         if (!playerPawn.InJail)

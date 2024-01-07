@@ -6,27 +6,36 @@ using TMPro;
 public class BuyConfirmation : MonoBehaviour
 {
     [SerializeField] TMP_Text _text;
-    private Property _propertyRef;
+    private Tile _tileRef;
     private Pawn _playerRef;
     private int _buyFunction;
 
-    public void SetUp(string text, Property property, Pawn player, int buyFunction)
+    public void SetUp(string text, Tile tile, Pawn player, int buyFunction)
     {
         _text.text = text;
-        _propertyRef = property;
+        _tileRef = tile;
         _playerRef = player;
         _buyFunction = buyFunction;
     }
+
 
     public void onClickConfirm()
     {
         switch(_buyFunction){
             case 0:
-                _propertyRef.BuyProperty(_playerRef);
+                ((Property)_tileRef).BuyProperty(_playerRef);
                 UIManager.Instance.HidePropertyBuyConfirmation();
                 break;
             case 1:
-                _propertyRef.BuyHouse(_playerRef);
+                ((Property)_tileRef).BuyHouse(_playerRef);
+                UIManager.Instance.HidePropertyBuyConfirmation();
+                break;
+            case 2:
+                ((Railroad)_tileRef).BuyRailroad(_playerRef);
+                UIManager.Instance.HidePropertyBuyConfirmation();
+                break;
+            case 3:
+                ((Utilities)_tileRef).BuyUtilities(_playerRef);
                 UIManager.Instance.HidePropertyBuyConfirmation();
                 break;
         }

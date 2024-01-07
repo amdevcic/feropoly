@@ -115,11 +115,11 @@ public class UIManager : MonoBehaviourPunCallbacks
         _eventLogScroll.velocity = new Vector2(0, 1000.0f);
     }
 
-    public void SetupPropertyBuy(string text, Property property, Pawn player, int buyFunction) 
+    public void SetupPropertyBuy(string text, Tile tile, Pawn player, int buyFunction) 
     {
         _endTurnButton.interactable = false;
         _buyConfirmationPanel.SetActive(true);
-        _buyConfirmation.SetUp(text, property, player, buyFunction);
+        _buyConfirmation.SetUp(text, tile, player, buyFunction);
     }
 
     public void HidePropertyBuyConfirmation()
