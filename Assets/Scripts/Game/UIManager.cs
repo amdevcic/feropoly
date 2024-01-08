@@ -45,6 +45,11 @@ public class UIManager : MonoBehaviourPunCallbacks
     [Header("Inventory")]
     [SerializeField] private GameObject _inventoryPanel;
 
+    [Header("End game")]
+    [SerializeField] private GameObject _winPanel;
+    [SerializeField] private TMP_Text _winPanelText;
+    [SerializeField] private GameObject _losePanel;
+
     public void HideAll()
     {
         _rollPanel.SetActive(false);
@@ -154,6 +159,33 @@ public class UIManager : MonoBehaviourPunCallbacks
     public void HideInventory()
     {
        _inventoryPanel.SetActive(false);
+    }
+
+    public void SetupWinPanel(string name)
+    {
+       _winPanelText.text = name;
+       ShowWinPanel();
+    }
+
+    public void ShowWinPanel()
+    {
+       _winPanel.SetActive(true);
+       HideLosePanel();
+    }
+
+    public void HideWinPanel()
+    {
+       _winPanel.SetActive(false);
+    }
+
+    public void ShowLosePanel()
+    {
+       _losePanel.SetActive(true);
+    }
+
+    public void HideLosePanel()
+    {
+       _losePanel.SetActive(false);
     }
 
     private void Awake() 

@@ -59,6 +59,26 @@ public class BoardManager : MonoBehaviour
         pawn.MoveTo(index);
     }
 
+    public void BankruptPlayer(Pawn player)
+    {
+        foreach(Tile tile in Tiles) {
+            switch (tile)
+            {
+                case Property property:
+                    property.ResetTile(player);
+                    break;
+                case Railroad railroad:
+                    railroad.ResetTile(player);
+                    break;
+                case Utilities utilities:
+                    utilities.ResetTile(player);
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
     private void Awake() 
     { 
         if (Instance != null && Instance != this) 

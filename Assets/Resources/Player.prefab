@@ -50,6 +50,7 @@ MonoBehaviour:
   moneyChanged:
     m_PersistentCalls:
       m_Calls: []
+  isBankrupt: 0
 --- !u!114 &7569678611466583402
 MonoBehaviour:
   m_ObjectHideFlags: 0

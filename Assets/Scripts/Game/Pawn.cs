@@ -20,6 +20,7 @@ public class Pawn : MonoBehaviourPunCallbacks, IPunInstantiateMagicCallback
     public UnityEvent moneyChanged;
     public int DiceRoll { get; set; }
     private System.Collections.Generic.Queue<Tuple<Vector3, Vector3>> animationQueue;
+    public bool isBankrupt = false;
 
     public void OnPhotonInstantiate(PhotonMessageInfo info)
     {
@@ -88,7 +89,13 @@ public class Pawn : MonoBehaviourPunCallbacks, IPunInstantiateMagicCallback
 
     public void PayMoney(int moneyToPay, Pawn other) 
     {
+        if((this.Money - moneyToPay) < 0) {
+            photonView.RPC(nameof(BankruptRPC), RpcTarget.All, new object[] {});
+            UIManager.Instance.ShowLosePanel();
+            UIManager.Instance.Log($"<color=red>{name}</color> je bankrotirao.");
+        }
         photonView.RPC(nameof(PayRPC), RpcTarget.All, new object[] { moneyToPay });
+        
         // if other is null, pay the bank
         if (other) 
         {
@@ -164,5 +171,14 @@ public class Pawn : MonoBehaviourPunCallbacks, IPunInstantiateMagicCallback
         tile.GetComponent<Utilities>().Owner = this;
         tile.GetComponent<Utilities>().propertyCard.SetName(name);
         Debug.Log($"tile {tileViewId} changed to owner {this.PhotonView.ViewID}");
+    }
+
+    [PunRPC]
+    private void BankruptRPC() 
+    {
+        BoardManager.Instance.BankruptPlayer(this);
+        this.isBankrupt = true;
+        GameManager.Instance.alivePlayers--;
+        GameManager.Instance.EndTurn();
     }
 }
