@@ -164,6 +164,8 @@ public class GameManager : MonoBehaviourPunCallbacks
             UIManager.Instance.DisplayPlayer(PhotonNetwork.LocalPlayer);
             UIManager.Instance.Log($"<color=orange>{PhotonNetwork.LocalPlayer.NickName}</color> se pridružio igri.");
             pawn.name = PhotonNetwork.LocalPlayer.NickName;
+            pawn.GetComponent<Pawn>().SetModel();
+            Debug.Log(PhotonNetwork.CurrentRoom.PlayerCount);
             localPawn = pawn.GetComponent<Pawn>();
 
             CardManager.Instance.Init();

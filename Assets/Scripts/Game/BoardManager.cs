@@ -38,7 +38,6 @@ public class BoardManager : MonoBehaviour
             Tiles[sp].OnPass(pawn);
             pawn.MoveTo(sp);
         }
-        // Tiles[sp].OnActivate(pawn);
     }
 
     public void EndMovement(Pawn pawn)

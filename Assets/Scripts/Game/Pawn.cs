@@ -4,6 +4,7 @@ using UnityEngine.Events;
 using System.Collections;
 using System;
 using System.Linq;
+using System.Collections.Generic;
 
 
 [RequireComponent(typeof(PhotonView))]
@@ -18,8 +19,12 @@ public class Pawn : MonoBehaviourPunCallbacks, IPunInstantiateMagicCallback
     public PhotonView PhotonView { get; private set; }
     public UnityEvent moneyChanged;
     public int DiceRoll { get; set; }
-    private System.Collections.Generic.Queue<Tuple<Vector3, Vector3>> animationQueue;
+    private Queue<Tuple<Vector3, Vector3>> animationQueue;
     public bool isBankrupt = false;
+    public static int nextModel = 0;
+    public Transform modelContainer;
+
+    public const int MODEL_COUNT = 8;
 
     public void OnPhotonInstantiate(PhotonMessageInfo info)
     {
@@ -179,5 +184,29 @@ public class Pawn : MonoBehaviourPunCallbacks, IPunInstantiateMagicCallback
         this.isBankrupt = true;
         GameManager.Instance.alivePlayers--;
         GameManager.Instance.EndTurn();
+        modelContainer.gameObject.SetActive(false);
+    }
+
+    public void SetModel()
+    {
+        photonView.RPC(nameof(SetModelRPC), RpcTarget.All);
+    }
+
+    [PunRPC]
+    private void SetModelRPC()
+    {
+        if (nextModel >= MODEL_COUNT)
+        {
+            nextModel = 0;
+        }
+
+        for (int i=0; i<MODEL_COUNT; i++)
+        {
+            modelContainer.GetChild(i).gameObject.SetActive(false);
+        }
+
+        modelContainer.GetChild(nextModel).gameObject.SetActive(true);
+
+        nextModel++;
     }
 }
