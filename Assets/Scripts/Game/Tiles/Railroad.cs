@@ -1,4 +1,5 @@
 using UnityEngine;
+using Photon.Pun;
 
 public class Railroad : Tile
 {
@@ -6,6 +7,7 @@ public class Railroad : Tile
     public int RentPrice = 50;
     public Pawn Owner {get; set;}
     public Railroad[] railroadFamily;
+    public PropertyCardList propertyCard;
 
     public override void OnActivate(Pawn player) {
         if (!this.Owner) {
@@ -30,5 +32,11 @@ public class Railroad : Tile
     public void BuyRailroad(Pawn player) {
         player.PayMoney(this.BuyPrice, null);
         player.ChangeRailroadOwner(this._photonView.ViewID);
+    }
+
+    new protected void Awake() 
+    {
+        _photonView = this.GetComponent<PhotonView>();
+        propertyCard.SetUp(Name, new int[]{RentPrice, RentPrice*2, RentPrice*3, RentPrice*4}, 0, PropertyColor.RED, 1);
     }
 }

@@ -16,6 +16,7 @@ public class Property : Tile
     public Pawn Owner {get; set;}
     public Property[] propertyFamily;
     public PropertyHouses houses;
+    public PropertyCardList propertyCard;
 
     public override void OnActivate(Pawn player) {
         if (!this.Owner) {
@@ -63,5 +64,11 @@ public class Property : Tile
 
     public void ShowHouses(int count) {
         houses.DisplayHouses(count);
+    }
+
+    new protected void Awake() 
+    {
+        _photonView = this.GetComponent<PhotonView>();
+        propertyCard.SetUp(Name, RentPrices, HousePrice, Color, 0);
     }
 }

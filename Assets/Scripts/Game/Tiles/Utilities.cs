@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class Utilities : Tile
 {
@@ -9,6 +10,7 @@ public class Utilities : Tile
     public Pawn Owner {get; set;}
     public Utilities[] utilityFamily;
     public PropertyColor utilityType;
+    public PropertyCardList propertyCard;
     public string _name;
 
     public override void OnActivate(Pawn player) {
@@ -34,5 +36,11 @@ public class Utilities : Tile
     public void BuyUtilities(Pawn player) {
         player.PayMoney(this.BuyPrice, null);
         player.ChangeUtilitiesOwner(this._photonView.ViewID);
+    }
+
+    new protected void Awake() 
+    {
+        _photonView = this.GetComponent<PhotonView>();
+        propertyCard.SetUp(Name, new int[]{}, 0, utilityType, 2);
     }
 }
