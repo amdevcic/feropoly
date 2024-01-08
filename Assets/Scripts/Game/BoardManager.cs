@@ -36,7 +36,8 @@ public class BoardManager : MonoBehaviour
         {
             sp = (playerSpace+i*backwardsModifier)%Tiles.Length;
             Tiles[sp].OnPass(pawn);
-            pawn.MoveTo(sp);
+            // pawn.MoveTo(sp, Tiles[sp].transform.position);
+            pawn.MoveTo(sp, GameManager.Instance.getTilePosition(Tiles[sp]));
         }
     }
 
@@ -49,14 +50,14 @@ public class BoardManager : MonoBehaviour
     public void MovePlayerToJail(Player player)
     {
         Pawn pawn = getPlayerPawn(player);
-        // pawn.MoveTo(JAIL_INDEX, jailTile.transform.position);
-        pawn.MoveTo(JAIL_INDEX);
+        pawn.MoveTo(JAIL_INDEX, GameManager.Instance.getTilePosition(jailTile));
+        // pawn.MoveTo(JAIL_INDEX);
     }
 
     public void MovePlayerTo(Player player, int index)
     {
         Pawn pawn = getPlayerPawn(player);
-        pawn.MoveTo(index);
+        pawn.MoveTo(index, GameManager.Instance.getTilePosition(Tiles[index]));
     }
 
     public void BankruptPlayer(Pawn player)

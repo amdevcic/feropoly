@@ -174,4 +174,14 @@ public class GameManager : MonoBehaviourPunCallbacks
         BeginTurn(0);
     }
 
+    public Vector3 getTilePosition(Tile tile)
+    {
+        const float offset = 0.05f;
+        int xOff = playerTurn % 3 - 1;
+        int zOff = playerTurn / 3 - 1;
+        Debug.Log($"x={xOff}, z={zOff}");
+        return tile.transform.position + new Vector3(xOff*offset, 0, zOff*offset);
+        // return tile.transform.position;
+    }
+
 }

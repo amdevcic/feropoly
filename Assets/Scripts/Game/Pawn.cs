@@ -23,8 +23,14 @@ public class Pawn : MonoBehaviourPunCallbacks, IPunInstantiateMagicCallback
     public bool isBankrupt = false;
     public static int nextModel = 0;
     public Transform modelContainer;
+    private Vector3 tilePosition;
 
     public const int MODEL_COUNT = 8;
+
+    public override void OnJoinedRoom()
+    {
+        nextModel = 0;
+    }
 
     public void OnPhotonInstantiate(PhotonMessageInfo info)
     {
@@ -37,25 +43,26 @@ public class Pawn : MonoBehaviourPunCallbacks, IPunInstantiateMagicCallback
         PhotonView = GetComponent<PhotonView>();
         tile = Go.Instance;
         Money = STARTING_MONEY;
-        animationQueue = new System.Collections.Generic.Queue<Tuple<Vector3, Vector3>>();
+        animationQueue = new Queue<Tuple<Vector3, Vector3>>();
     }
 
-    public void MoveTo(int space)
+    public void MoveTo(int space, Vector3 dest)
     {
-        PhotonView.RPC(nameof(MoveToRPC), RpcTarget.All, new object[] { space });
+        PhotonView.RPC(nameof(MoveToRPC), RpcTarget.All, new object[] { space, dest });
     }
 
     [PunRPC]
-    public void MoveToRPC(int space)
+    public void MoveToRPC(int space, Vector3 dest)
     {
         Debug.Log($"Player moves to space {space}");
         
-        animationQueue.Enqueue(new Tuple<Vector3, Vector3>(tile.transform.position, BoardManager.Instance.Tiles[space].transform.position));
+        animationQueue.Enqueue(new Tuple<Vector3, Vector3>(tilePosition, dest));
         this.tile = BoardManager.Instance.Tiles[space];
+        tilePosition = dest;
 
         if (animationQueue.Count == 1)
         {
-            StartCoroutine(AnimateMovement(transform.position, tile.transform.position));
+            StartCoroutine(AnimateMovement(transform.position, dest));
         }
     }
 
@@ -65,6 +72,7 @@ public class Pawn : MonoBehaviourPunCallbacks, IPunInstantiateMagicCallback
         for (float i=0.0f; i<1.0f; i+=Time.deltaTime * 5)
         {
             Vector3 pos = Vector3.Lerp(start, end, i);
+            // transform.position = new Vector3(pos.x, y, pos.z);
             transform.position = new Vector3(pos.x, y+Mathf.Sin(i*Mathf.PI)*0.1f, pos.z);
             yield return null;
         }
