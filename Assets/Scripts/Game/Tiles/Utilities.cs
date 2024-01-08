@@ -16,6 +16,7 @@ public class Utilities : Tile
     public override void OnActivate(Pawn player) {
         if (!this.Owner) {
             // player buys property
+            if(player.Money < BuyPrice) return;
             UIManager.Instance.SetupPropertyBuy($"Želite li kupiti {_name} za {BuyPrice} €?", this, player, 3);
             UIManager.Instance.SetupPropertyCard(Name, new int[]{}, 0, utilityType, 2);
         } else if(this.Owner != player) {
@@ -42,5 +43,12 @@ public class Utilities : Tile
     {
         _photonView = this.GetComponent<PhotonView>();
         propertyCard.SetUp(Name, new int[]{}, 0, utilityType, 2);
+    }
+
+    public void ResetTile(Pawn player) {
+        if(player == this.Owner) {
+            this.Owner = null;
+            this.propertyCard.SetName("");
+        }
     }
 }

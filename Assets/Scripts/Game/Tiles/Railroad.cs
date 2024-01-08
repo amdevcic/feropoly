@@ -12,6 +12,7 @@ public class Railroad : Tile
     public override void OnActivate(Pawn player) {
         if (!this.Owner) {
             // player buys property
+            if(player.Money < BuyPrice) return;
             UIManager.Instance.SetupPropertyBuy($"Želite li kupiti zavod za {BuyPrice} €?", this, player, 2);
             UIManager.Instance.SetupPropertyCard(Name, new int[]{RentPrice, RentPrice*2, RentPrice*3, RentPrice*4}, 0, PropertyColor.RED, 1);
         } else if(this.Owner != player) {
@@ -38,5 +39,12 @@ public class Railroad : Tile
     {
         _photonView = this.GetComponent<PhotonView>();
         propertyCard.SetUp(Name, new int[]{RentPrice, RentPrice*2, RentPrice*3, RentPrice*4}, 0, PropertyColor.RED, 1);
+    }
+
+    public void ResetTile(Pawn player) {
+        if(player == this.Owner) {
+            this.Owner = null;
+            this.propertyCard.SetName("");
+        }
     }
 }

@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     [SerializeField] private GameObject _playerPrefab;
     [SerializeField] private Transform _spawnPoint;
     private byte playerTurn = 0;
+    public int alivePlayers;
     private PhotonView _photonView;
     public Pawn localPawn;
 
@@ -29,6 +30,11 @@ public class GameManager : MonoBehaviourPunCallbacks
         PhotonNetwork.LeaveRoom();
     }
 
+    public void ExitGame()
+    {
+        PhotonNetwork.LeaveRoom();
+    }
+
     [PunRPC]
     public void BeginTurn(byte turn)
     {
@@ -39,12 +45,27 @@ public class GameManager : MonoBehaviourPunCallbacks
         UIManager.Instance.BeginTurn(myTurn, PhotonNetwork.PlayerList[playerTurn]);
     }
 
+    [PunRPC]
+    public void EndGame(string name)
+    {
+        UIManager.Instance.SetupWinPanel($"Igrač {name} je pobjedio!");
+    }
+
     public void EndTurn() 
     {
         BoardManager.Instance.getPlayerPawn(PhotonNetwork.PlayerList[playerTurn]).DoublesRolled = 0;
-        if (++playerTurn >= PhotonNetwork.CurrentRoom.PlayerCount) 
-        {
-            playerTurn = 0;
+        if(alivePlayers <= 1) {
+            Debug.Log("player won");
+            int i = 0;
+            for(; i < PhotonNetwork.CurrentRoom.PlayerCount; i++) {
+                if(!BoardManager.Instance.getPlayerPawn(PhotonNetwork.PlayerList[i]).isBankrupt) break;
+            }
+            _photonView.RPC(nameof(EndGame), RpcTarget.All, new object[] { BoardManager.Instance.getPlayerPawn(PhotonNetwork.PlayerList[i]).name });
+            return;
+        }
+        while(true) {
+            playerTurn = (byte)((playerTurn + 1) % PhotonNetwork.CurrentRoom.PlayerCount);
+            if(!BoardManager.Instance.getPlayerPawn(PhotonNetwork.PlayerList[playerTurn]).isBankrupt) break;
         }
         _photonView.RPC(nameof(BeginTurn), RpcTarget.All, new object[] { playerTurn });
     }
@@ -122,6 +143,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         }
 
         _photonView = GetComponent<PhotonView>();
+        alivePlayers = PhotonNetwork.CurrentRoom.PlayerCount;
     }
 
     void Start()

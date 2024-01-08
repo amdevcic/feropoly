@@ -12,7 +12,7 @@ public class PropertyHouses : MonoBehaviour
 
     public void DisplayHouses(int count)
     {
-        if(count > 5 || count < 1) return;
+        if(count > 5 || count < 0) return;
         HideAll();
         switch(count) {
             case 4:
