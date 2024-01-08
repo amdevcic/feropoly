@@ -120,6 +120,7 @@ public class Pawn : MonoBehaviourPunCallbacks, IPunInstantiateMagicCallback
     {
         GameObject tile = PhotonView.Find(tileViewId).gameObject;
         tile.GetComponent<Property>().Owner = this;
+        tile.GetComponent<Property>().propertyCard.SetName(name);
         Debug.Log($"tile {tileViewId} changed to owner {this.PhotonView.ViewID}");
     }
 
@@ -147,6 +148,7 @@ public class Pawn : MonoBehaviourPunCallbacks, IPunInstantiateMagicCallback
     {
         GameObject tile = PhotonView.Find(tileViewId).gameObject;
         tile.GetComponent<Railroad>().Owner = this;
+        tile.GetComponent<Railroad>().propertyCard.SetName(name);
         Debug.Log($"tile {tileViewId} changed to owner {this.PhotonView.ViewID}");
     }
 
@@ -160,6 +162,7 @@ public class Pawn : MonoBehaviourPunCallbacks, IPunInstantiateMagicCallback
     {
         GameObject tile = PhotonView.Find(tileViewId).gameObject;
         tile.GetComponent<Utilities>().Owner = this;
+        tile.GetComponent<Utilities>().propertyCard.SetName(name);
         Debug.Log($"tile {tileViewId} changed to owner {this.PhotonView.ViewID}");
     }
 }

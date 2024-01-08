@@ -42,10 +42,14 @@ public class UIManager : MonoBehaviourPunCallbacks
     [Header("Debug")]
     [SerializeField] private GameObject _debugPanel;
 
+    [Header("Inventory")]
+    [SerializeField] private GameObject _inventoryPanel;
+
     public void HideAll()
     {
         _rollPanel.SetActive(false);
         _jailPanel.SetActive(false);
+        _inventoryPanel.SetActive(false);
         HidePropertyBuyConfirmation();
     }
 
@@ -140,6 +144,16 @@ public class UIManager : MonoBehaviourPunCallbacks
     public void HideDebugMove()
     {
        _debugPanel.SetActive(false);
+    }
+
+    public void ShowInventory()
+    {
+       _inventoryPanel.SetActive(true);
+    }
+
+    public void HideInventory()
+    {
+       _inventoryPanel.SetActive(false);
     }
 
     private void Awake() 
