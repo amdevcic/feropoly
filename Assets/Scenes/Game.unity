@@ -3954,7 +3954,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &592477696
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12145,7 +12145,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1433380817
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12269,7 +12269,7 @@ MonoBehaviour:
   _propertyCardPanel: {fileID: 2126854249}
   _jailPanel: {fileID: 1109512021}
   _getOutOfJailButton: {fileID: 1311653072}
-  _rollInJailButton: {fileID: 0}
+  _rollInJailButton: {fileID: 468271264}
   _debugPanel: {fileID: 1433380816}
   _inventoryPanel: {fileID: 1528759140}
   _winPanel: {fileID: 2096984239}
