@@ -89,6 +89,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                 if (playerPawn.DoublesRolled >= 3)
                 {
                     SendActivePlayerToJail();
+                    EndTurn();
                 }
 
                 _photonView.RPC(nameof(BeginTurn), RpcTarget.All, new object[] { playerTurn });
