@@ -22,7 +22,8 @@ public class Railroad : Tile
             foreach(Railroad r in railroadFamily) {
                 if(r.Owner == this.Owner) family++;
             }
-            int rentPrice = this.RentPrice * family;
+            int doubleRent = player.PulledCard ? 1 : 2;
+            int rentPrice = this.RentPrice * family * doubleRent;
             Debug.Log($"player pays price {rentPrice} to other");
             player.PayMoney(rentPrice, this.Owner);
         }

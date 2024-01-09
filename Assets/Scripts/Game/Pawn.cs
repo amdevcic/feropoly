@@ -25,6 +25,7 @@ public class Pawn : MonoBehaviourPunCallbacks, IPunInstantiateMagicCallback
     public Transform modelContainer;
     private Vector3 tilePosition;
     public byte RolledInJail { get; set; } = 0;
+    public bool PulledCard  { get; set; } = false;
 
     public const int MODEL_COUNT = 8;
 
