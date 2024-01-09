@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44300225, g: 0.49219102, b: 0.5719227, a: 1}
+  m_IndirectSpecularColor: {r: 0.44300252, g: 0.4921916, b: 0.5719237, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3949,12 +3949,12 @@ GameObject:
   - component: {fileID: 592477698}
   - component: {fileID: 592477697}
   m_Layer: 5
-  m_Name: Button
+  m_Name: GoToJail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &592477696
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4021,7 +4021,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1437001027}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: SendPlayerToJail
+        m_MethodName: SendActivePlayerToJail
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -12145,7 +12145,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1433380817
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12269,6 +12269,7 @@ MonoBehaviour:
   _propertyCardPanel: {fileID: 2126854249}
   _jailPanel: {fileID: 1109512021}
   _getOutOfJailButton: {fileID: 1311653072}
+  _rollInJailButton: {fileID: 0}
   _debugPanel: {fileID: 1433380816}
   _inventoryPanel: {fileID: 1528759140}
   _winPanel: {fileID: 2096984239}

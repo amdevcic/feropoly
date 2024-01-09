@@ -98,6 +98,10 @@ public class GameManager : MonoBehaviourPunCallbacks
         {
             GetPlayerOutOfJail();
             BoardManager.Instance.MovePlayerSpaces(PhotonNetwork.PlayerList[playerTurn], value1 + value2);
+        } 
+        else 
+        {
+            playerPawn.RolledInJail++;
         }
         
     }
@@ -112,7 +116,9 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     public void GetPlayerOutOfJail()
     {
-        BoardManager.Instance.getPlayerPawn(PhotonNetwork.PlayerList[playerTurn]).InJail = false;
+        Pawn playerPawn = BoardManager.Instance.getPlayerPawn(PhotonNetwork.PlayerList[playerTurn]);
+        playerPawn.InJail = false;
+        playerPawn.RolledInJail = 0;
     }
 
     public void ReducePlayerGetOutOfJailCards()

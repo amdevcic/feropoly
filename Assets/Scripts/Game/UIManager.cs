@@ -38,6 +38,7 @@ public class UIManager : MonoBehaviourPunCallbacks
     [Header("Jail")]
     [SerializeField] private GameObject _jailPanel;
     [SerializeField] private Button _getOutOfJailButton;
+    [SerializeField] private Button _rollInJailButton;
 
     [Header("Debug")]
     [SerializeField] private GameObject _debugPanel;
@@ -66,8 +67,11 @@ public class UIManager : MonoBehaviourPunCallbacks
         {
             if (GameManager.Instance.localPawn.InJail)
             {
+                _rollInJailButton.interactable = true;
                 _endTurnButton.interactable = false;
                 _jailPanel.SetActive(true);
+                if (GameManager.Instance.localPawn.RolledInJail >= 3)
+                    _rollInJailButton.interactable = false;
 
                 _getOutOfJailButton.interactable = GameManager.Instance.localPawn.GetOutOfJailCards > 0;
                 _getOutOfJailButton.GetComponentInChildren<TMP_Text>().text = $"Iskoristi ispričnicu ({GameManager.Instance.localPawn.GetOutOfJailCards})";
