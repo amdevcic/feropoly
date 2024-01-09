@@ -88,7 +88,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                 playerPawn.DoublesRolled++;
                 if (playerPawn.DoublesRolled >= 3)
                 {
-                    SendPlayerToJail();
+                    SendActivePlayerToJail();
                 }
 
                 _photonView.RPC(nameof(BeginTurn), RpcTarget.All, new object[] { playerTurn });
@@ -102,9 +102,10 @@ public class GameManager : MonoBehaviourPunCallbacks
         
     }
 
-    public void SendPlayerToJail()
+    public void SendActivePlayerToJail()
     {
         Player activePlayer = PhotonNetwork.PlayerList[playerTurn];
+        UIManager.Instance.Log($"<color=orange>{activePlayer.NickName}</color> ide na stegovnu.");
         BoardManager.Instance.MovePlayerToJail(activePlayer);
         BoardManager.Instance.getPlayerPawn(activePlayer).InJail = true;
     }
@@ -174,7 +175,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         BeginTurn(0);
     }
 
-    public Vector3 getTilePosition(Tile tile)
+    public Vector3 GetTilePosition(Tile tile)
     {
         const float offset = 0.05f;
         int xOff = playerTurn % 3 - 1;
